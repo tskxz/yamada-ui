@@ -178,6 +178,7 @@ export const useRadio = <
       disabled,
       readOnly,
       checked,
+      "aria-checked": checked,
       style: {
         border: "0px",
         clip: "rect(0px, 0px, 0px, 0px)",
@@ -215,7 +216,7 @@ export const useRadio = <
   const getLabelProps: PropGetter = useCallback(
     (props = {}, ref = null) => ({
       ...formControlProps,
-      props,
+      ...props,
       ref,
       onMouseDown: handlerAll(props.onMouseDown, (ev: SyntheticEvent) => {
         ev.preventDefault()

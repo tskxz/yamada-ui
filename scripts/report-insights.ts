@@ -12,6 +12,9 @@ type Comment = Awaited<
 type Commit = Awaited<
   ReturnType<typeof octokit.repos.listCommits>
 >["data"][number]
+type Review = Awaited<
+  ReturnType<typeof octokit.pulls.listReviews>
+>["data"][number]
 type Collaborator = Awaited<
   ReturnType<typeof octokit.repos.listCollaborators>
 >["data"][number]
@@ -21,12 +24,13 @@ type Insight = {
   html_url: string
   commits: Commit[]
   comments: Comment[]
+  reviews: Review[]
   issues: {
     created: Issue[]
   }
   pullRequests: {
     created: Issue[]
-    reviewed: Issue[]
+    reviewed: Review[]
   }
 }
 
@@ -36,8 +40,8 @@ const COMMON_PARAMS = {
 }
 const OMIT_GITHUB_IDS = ["hajimemat"]
 
-// const START_DATE = dayjs("2024-04-26").hour(18).minute(0).second(0)
-// const END_DATE = dayjs("2024-05-03").hour(18).minute(0).second(0)
+// const START_DATE = dayjs("2024-05-01").hour(0).minute(0).second(0)
+// const END_DATE = dayjs("2024-05-31").hour(23).minute(59).second(59)
 
 const START_DATE = dayjs().subtract(7, "days").hour(18).minute(0).second(0)
 const END_DATE = dayjs().hour(18).minute(0).second(0)
@@ -48,6 +52,11 @@ const REPORT_FORMAT = "YYYY/MM/DD"
 config()
 
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
+
+const chunkArray = <T extends any>(array: T[], n: number) =>
+  new Array(Math.ceil(array.length / n))
+    .fill(0)
+    .map((_, i) => array.slice(i * n, (i + 1) * n))
 
 const getCollaborators = async () => {
   const { data } = await recursiveOctokit(() =>
@@ -132,6 +141,54 @@ const getComments = async () => {
   return comments
 }
 
+const getReviews = async () => {
+  let pullRequests: Issue[] = []
+
+  const query = `org:${COMMON_PARAMS["owner"]} type:pr created:${START_DATE.format(QUERY_FORMAT)}..${END_DATE.format(QUERY_FORMAT)}`
+  const perPage = 100
+
+  let page = 1
+
+  const issuesAndPullRequests = async () => {
+    const { data } = await octokit.search.issuesAndPullRequests({
+      q: query,
+      per_page: perPage,
+      page,
+    })
+    const { total_count, items } = data
+
+    pullRequests.push(...items)
+
+    if (total_count === perPage) {
+      page++
+
+      await recursiveOctokit(issuesAndPullRequests)
+    }
+  }
+
+  await recursiveOctokit(issuesAndPullRequests)
+
+  const reviewComments = (
+    await Promise.all(
+      pullRequests.map(({ number, repository_url }) =>
+        recursiveOctokit(async () => {
+          const repo = repository_url.split("/").at(-1)!
+
+          const { data } = await octokit.pulls.listReviews({
+            ...COMMON_PARAMS,
+            repo,
+            pull_number: number,
+          })
+
+          return data
+        }),
+      ),
+    )
+  ).flat()
+
+  return reviewComments
+}
+
 const getCommits = async () => {
   const { data: repositories } = await octokit.repos.listForOrg({
     org: COMMON_PARAMS["owner"],
@@ -174,6 +231,7 @@ const getCommits = async () => {
 
 const getInsights = async (collaborators: Collaborator[]) => {
   const allComments = await getComments()
+  const allReviews = await getReviews()
   const allCommits = await getCommits()
 
   const insights: Insight[] = []
@@ -187,11 +245,13 @@ const getInsights = async (collaborators: Collaborator[]) => {
       login,
       "author",
     )
-    const reviewedPullRequest = await getIssuesAndPullRequests(
-      login,
-      "reviewed-by",
-    )
     const comments = allComments.filter(({ user }) => user?.login === login)
+    const reviews = allReviews.filter(
+      ({ user, state }) => user?.login === login && state !== "APPROVED",
+    )
+    const reviewedPullRequest = allReviews.filter(
+      ({ user, state }) => user?.login === login && state === "APPROVED",
+    )
     const commits = allCommits.filter(({ author }) => author?.login === login)
     const createdIssues: Issue[] = []
     const createdPullRequests: Issue[] = []
@@ -207,8 +267,9 @@ const getInsights = async (collaborators: Collaborator[]) => {
     insights.push({
       login,
       html_url,
-      commits: commits,
-      comments: comments,
+      commits,
+      comments,
+      reviews,
       issues: {
         created: createdIssues,
       },
@@ -222,57 +283,77 @@ const getInsights = async (collaborators: Collaborator[]) => {
   return insights
 }
 
-const createReport = (insights: Insight[]) => {
-  const contents = insights
-    .map(({ login, html_url, comments, commits, issues, pullRequests }) => {
-      const commentCount = comments.length
-      const commitCount = commits.length
-      const createdIssueCount = issues.created.length
-      const createdPRCount = pullRequests.created.length
-      const reviewedPRCount = pullRequests.reviewed.length
-      const totalCount =
-        createdIssueCount + createdPRCount + reviewedPRCount + commentCount
+const createReports = (insights: Insight[]) =>
+  insights
+    .map(
+      ({
+        login,
+        html_url,
+        comments,
+        reviews,
+        commits,
+        issues,
+        pullRequests,
+      }) => {
+        const commentCount = comments.length + reviews.length
+        const commitCount = commits.length
+        const createdIssueCount = issues.created.length
+        const createdPRCount = pullRequests.created.length
+        const reviewedPRCount = pullRequests.reviewed.length
+        const totalCount =
+          createdIssueCount + createdPRCount + reviewedPRCount + commentCount
 
-      return {
-        total: totalCount,
-        content: [
-          `- [${login}](${html_url}): ${totalCount}`,
-          `  - Issue: ${createdIssueCount}`,
-          `  - PR: ${createdPRCount}`,
-          `  - Review: ${reviewedPRCount}`,
-          `  - Comment: ${commentCount}`,
-          `  - Commit: ${commitCount}`,
-        ].join("\n"),
-      }
-    })
+        return {
+          total: totalCount,
+          content: [
+            `- [${login}](${html_url}): ${totalCount}`,
+            `  - Issue: ${createdIssueCount}`,
+            `  - PR: ${createdPRCount}`,
+            `  - Review: ${reviewedPRCount}`,
+            `  - Comment: ${commentCount}`,
+            `  - Commit: ${commitCount}`,
+          ].join("\n"),
+        }
+      },
+    )
     .sort((a, b) => b.total - a.total)
     .map(({ content }) => content)
 
-  const startDate = START_DATE.format(REPORT_FORMAT)
-  const endDate = END_DATE.format(REPORT_FORMAT)
-
-  return [
-    `<@&1202956318718304276>`,
-    `## Insight Report`,
-    `${startDate} - ${endDate}`,
-    "",
-    ...contents,
-  ].join("\n")
-}
-
-const sendDiscordChannel = async (content: string) => {
+const sendDiscordChannel = async (reports: string[]) => {
   const url = process.env.DISCORD_INSIGHTS_WEBHOOK_URL
 
   if (!url) throw new Error("Missing Discord Webhook URL\n")
 
-  const data = { username: "GitHub", content }
+  const startDate = START_DATE.format(REPORT_FORMAT)
+  const endDate = END_DATE.format(REPORT_FORMAT)
 
-  const headers = { "Content-Type": "application/json" }
-  const body = JSON.stringify(data)
+  for await (const [index, contents] of Object.entries(
+    chunkArray(reports, 10),
+  )) {
+    const isFirst = index === "0"
 
-  const { ok } = await fetch(url, { method: "POST", headers, body })
+    let chunks = isFirst
+      ? [
+          `<@&1202956318718304276>`,
+          `## Insight Report`,
+          `${startDate} - ${endDate}`,
+          "",
+        ]
+      : []
 
-  if (!ok) throw new Error("Failed to send message to Discord\n")
+    chunks = [...chunks, ...contents]
+
+    const content = chunks.join("\n")
+
+    const data = { username: "GitHub", content }
+
+    const headers = { "Content-Type": "application/json" }
+    const body = JSON.stringify(data)
+
+    const { ok } = await fetch(url, { method: "POST", headers, body })
+
+    if (!ok) throw new Error("Failed to send message to Discord\n")
+  }
 }
 
 const main = async () => {
@@ -280,9 +361,9 @@ const main = async () => {
 
   const insights = await getInsights(collaborators)
 
-  const report = createReport(insights)
+  const reports = createReports(insights)
 
-  await sendDiscordChannel(report)
+  await sendDiscordChannel(reports)
 }
 
 main()
