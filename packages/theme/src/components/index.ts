@@ -85,6 +85,7 @@ import { Tag } from "./tag"
 import { Textarea } from "./textarea"
 import { Toggle } from "./toggle"
 import { Tooltip } from "./tooltip"
+import { Tree } from "./tree"
 import { YearPicker } from "./year-picker"
 
 export const components = {
@@ -175,5 +176,6 @@ export const components = {
   Textarea,
   Toggle,
   Tooltip,
+  Tree,
   YearPicker,
 }
