@@ -26,12 +26,7 @@ export const TreeIcon = forwardRef<HTMLDivElement, TreeIconProps>(
       ...props,
     })
 
-    const {
-      className,
-
-      children,
-      ...rest
-    } = omitThemeProps(mergedProps)
+    const { className, children, ...rest } = omitThemeProps(mergedProps)
 
     const css: CSSUIObject = {
       ...styles.icon,
