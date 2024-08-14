@@ -1,10 +1,4 @@
-import type {
-  CSS,
-  CSSUIObject,
-  HTMLUIProps,
-  Token,
-  UIPropGetter,
-} from "@yamada-ui/core"
+import type { CSSUIObject, HTMLUIProps, UIPropGetter } from "@yamada-ui/core"
 import { ui, forwardRef } from "@yamada-ui/core"
 import {
   createContext,
@@ -14,12 +8,14 @@ import {
   handlerAll,
   isArray,
   isEmpty,
+  isFunction,
   mergeRefs,
   omitChildren,
 } from "@yamada-ui/utils"
 import type { KeyboardEvent, KeyboardEventHandler, ReactNode } from "react"
 import { useCallback } from "react"
 import { useTreeContext, useTreeDescendant } from "./tree"
+import type { TreeButtonOptions } from "./tree-button"
 import { TreeButton } from "./tree-button"
 import { TreePanel } from "./tree-panel"
 
@@ -37,6 +33,20 @@ const [TreeItemProvider, useTreeItemContext] = createContext<TreeItemContext>({
 })
 
 export { useTreeItemContext }
+
+type TreeButtonContext = Omit<TreeButtonOptions, "children"> & {
+  level: number
+  index: number
+  lastLevel: boolean
+}
+
+const [TreeButtonProvider, useTreeButtonContext] =
+  createContext<TreeButtonContext>({
+    name: "TreeButtonContext",
+    errorMessage: `useTreeButtonContext returned is 'undefined'. Seems you forgot to wrap the components in "<TreeButton />"`,
+  })
+
+export { useTreeButtonContext }
 
 type TreeItemOptions = {
   /**
@@ -69,14 +79,6 @@ type TreeItemOptions = {
   children?:
     | ReactNode
     | ((props: { isExpanded: boolean; isDisabled: boolean }) => ReactNode)
-  /**
-   * Specifies the background color of the selected item. Accepts a color token.
-   */
-  selectedBg?: Token<CSS.Property.Background, "colors">
-  /**
-   * Alias for `selectedBg`. Specifies the background color of the selected item. Accepts a color token.
-   */
-  selectedBackground?: Token<CSS.Property.Background, "colors">
 }
 
 export type TreeItemProps = Omit<HTMLUIProps<"li">, "children"> &
@@ -91,8 +93,6 @@ export const TreeItem = forwardRef<TreeItemProps, "li">(
       leftIcon,
       iconHidden = false,
       children,
-      selectedBg,
-      selectedBackground,
       ...rest
     },
     ref,
@@ -232,10 +232,9 @@ export const TreeItem = forwardRef<TreeItemProps, "li">(
 
     const css: CSSUIObject = {
       ...styles.item,
-      overflowAnchor: "none",
     }
 
-    if (typeof children === "function")
+    if (isFunction(children))
       children = children({ isExpanded: isOpen, isDisabled })
 
     const validChildren = getValidChildren(children)
@@ -251,6 +250,8 @@ export const TreeItem = forwardRef<TreeItemProps, "li">(
 
     const content = isArray(children) ? children[0] : children
 
+    const [customTreeButton] = findChildren(validChildren, TreeButton)
+
     const level = levels[i]
 
     return (
@@ -264,8 +265,6 @@ export const TreeItem = forwardRef<TreeItemProps, "li">(
           getContentProps,
           getButtonProps,
           getPanelProps,
-          selectedBg,
-          selectedBackground,
           onChange,
         }}
       >
@@ -276,9 +275,15 @@ export const TreeItem = forwardRef<TreeItemProps, "li">(
           {...rest}
         >
           {content ? (
-            <TreeButton lastLevel={!hasChildren} index={i} level={level}>
-              {content}
-            </TreeButton>
+            <TreeButtonProvider
+              value={{
+                lastLevel: !hasChildren,
+                index: i,
+                level: level,
+              }}
+            >
+              {customTreeButton ? content : <TreeButton>{content}</TreeButton>}
+            </TreeButtonProvider>
           ) : null}
           {hasValidChildren && isArray(cloneChildren) ? (
             <TreePanel>

@@ -1,10 +1,4 @@
-import type {
-  CSS,
-  CSSUIObject,
-  HTMLUIProps,
-  ThemeProps,
-  Token,
-} from "@yamada-ui/core"
+import type { CSSUIObject, HTMLUIProps, ThemeProps } from "@yamada-ui/core"
 import {
   ui,
   forwardRef,
@@ -17,7 +11,6 @@ import {
   createContext,
   cx,
   isArray,
-  isNull,
   isObject,
   isValidElement,
 } from "@yamada-ui/utils"
@@ -34,13 +27,7 @@ export { useTreeDescendant }
 
 type TreeContext = Pick<
   TreeOptions,
-  | "icon"
-  | "iconHidden"
-  | "isDefaultExpanded"
-  | "leftIcon"
-  | "selectedBg"
-  | "selectedBackground"
-  | "isSelectable"
+  "icon" | "iconHidden" | "isDefaultExpanded" | "leftIcon" | "isSelectable"
 > & {
   index: number | number[]
   setIndex: Dispatch<SetStateAction<number | number[]>>
@@ -108,14 +95,6 @@ type TreeOptions = {
     | ReactNode
     | ((props: { isExpanded: boolean; isDisabled: boolean }) => ReactNode)
   /**
-   * Specifies the background color of the selected item(s). Accepts a color token.
-   */
-  selectedBg?: Token<CSS.Property.Background, "colors">
-  /**
-   * Alias for `selectedBg`. Specifies the background color of the selected item(s). Accepts a color token.
-   */
-  selectedBackground?: Token<CSS.Property.Background, "colors">
-  /**
    * Specifies the value(s) of the selected item(s).
    */
   selectedValue?: number | number[]
@@ -155,8 +134,6 @@ export const Tree = forwardRef<TreeProps, "ul">((props, ref) => {
     iconHidden,
     icon,
     leftIcon,
-    selectedBg,
-    selectedBackground,
     selectedValue,
     defaultSelectedValue,
     onChange,
@@ -165,13 +142,16 @@ export const Tree = forwardRef<TreeProps, "ul">((props, ref) => {
     ...rest
   } = omitThemeProps(mergedProps)
 
-  if (isDefaultExpanded && !isNull(value || defaultValue)) {
+  if (
+    isDefaultExpanded &&
+    (value !== undefined || defaultValue !== undefined)
+  ) {
     console.warn(
-      `Tree: If 'isDefaultExpanded' is true, then 'index' or 'defaultIndex' must not be passed.`,
+      `Tree: If 'isDefaultExpanded' is true, then 'value' or 'defaultValue' must be provided.`,
     )
   }
 
-  if (!isNull(value || defaultValue) && !isArray(value || defaultValue)) {
+  if ((value && !isArray(value)) || (defaultValue && !isArray(defaultValue))) {
     console.warn(`Tree: 'index' or 'defaultIndex' must be an array.`)
   }
 
@@ -221,7 +201,7 @@ export const Tree = forwardRef<TreeProps, "ul">((props, ref) => {
 
   const levels = getLevels(props.children as childrenProp)
 
-  const css: CSSUIObject = { w: "100%", ...styles.container }
+  const css: CSSUIObject = { ...styles.container }
 
   return (
     <DescendantsContextProvider value={descendants}>
@@ -239,8 +219,6 @@ export const Tree = forwardRef<TreeProps, "ul">((props, ref) => {
           leftIcon,
           styles,
           levels,
-          selectedBg,
-          selectedBackground,
           selectMultiple,
           isSelectable,
         }}

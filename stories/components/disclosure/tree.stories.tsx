@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 import type { Meta, StoryFn } from "@storybook/react"
 import { Icon } from "@yamada-ui/fontawesome"
-import { Tree, TreeItem } from "@yamada-ui/react"
+import { Tree, TreeButton, TreeItem } from "@yamada-ui/react"
 
 type Story = StoryFn<typeof Tree>
 
@@ -225,6 +225,28 @@ export const disableItems: Story = () => {
       </TreeItem>
       <TreeItem>
         Item 5<TreeItem>Item 6</TreeItem>
+      </TreeItem>
+    </Tree>
+  )
+}
+
+export const customSelectedBg: Story = () => {
+  return (
+    <Tree variant="outline">
+      <TreeItem>Item 1 (no-item)</TreeItem>
+      <TreeItem>
+        <TreeButton css={{ "&[data-selected=true]": { bg: "red.500" } }}>
+          Item 2
+        </TreeButton>
+        <TreeItem>
+          Item 3
+          <TreeItem>
+            Item 4<TreeItem>Item 5</TreeItem>
+          </TreeItem>
+        </TreeItem>
+      </TreeItem>
+      <TreeItem>
+        Item 6<TreeItem>Item 7</TreeItem>
       </TreeItem>
     </Tree>
   )
