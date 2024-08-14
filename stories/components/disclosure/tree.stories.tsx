@@ -235,9 +235,7 @@ export const customSelectedBg: Story = () => {
     <Tree variant="outline">
       <TreeItem>Item 1 (no-item)</TreeItem>
       <TreeItem>
-        <TreeButton css={{ "&[data-selected=true]": { bg: "red.500" } }}>
-          Item 2
-        </TreeButton>
+        <TreeButton isSelected>Item 2</TreeButton>
         <TreeItem>
           Item 3
           <TreeItem>

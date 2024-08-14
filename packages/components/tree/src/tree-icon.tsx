@@ -40,6 +40,7 @@ export const TreeIcon = forwardRef<HTMLDivElement, TreeIconProps>(
           onClick={() => {
             if (isSelectable) onChange(!isOpen)
           }}
+          {...rest}
         >
           {children}
         </ui.div>

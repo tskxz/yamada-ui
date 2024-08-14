@@ -1,5 +1,10 @@
-import type { CSSUIObject, HTMLUIProps } from "@yamada-ui/core"
-import { ui, forwardRef } from "@yamada-ui/core"
+import type { CSSUIObject, HTMLUIProps, ThemeProps } from "@yamada-ui/core"
+import {
+  ui,
+  forwardRef,
+  omitThemeProps,
+  useMultiComponentStyle,
+} from "@yamada-ui/core"
 import type { IconProps } from "@yamada-ui/icon"
 import { cx, isArray, isFunction } from "@yamada-ui/utils"
 import { type FC, type PropsWithChildren, type ReactNode } from "react"
@@ -20,19 +25,20 @@ export type TreeButtonOptions = {
   leftIcon?:
     | ReactNode
     | ((props: { isExpanded: boolean; isDisabled: boolean }) => ReactNode)
+
+  /**
+   * The selected state of the tree button.
+   */
+  isSelected?: boolean
 }
 
-export type TreeButtonProps = HTMLUIProps<"button"> & TreeButtonOptions
+export type TreeButtonProps = Omit<HTMLUIProps<"button">, "onChange"> &
+  ThemeProps<"Tree"> &
+  TreeButtonOptions
 
 export const TreeButton = forwardRef<TreeButtonProps, "button">(
   (
-    {
-      className,
-      icon: customIcon,
-      leftIcon: customLeftIcon,
-      children,
-      ...rest
-    },
+    { icon: customIcon, leftIcon: customLeftIcon, isSelected, ...props },
     ref,
   ) => {
     const {
@@ -48,7 +54,6 @@ export const TreeButton = forwardRef<TreeButtonProps, "button">(
       icon: generalIcon,
       leftIcon: generalLeftIcon,
       iconHidden,
-      styles,
       selectedIndex,
     } = useTreeContext()
 
@@ -56,19 +61,27 @@ export const TreeButton = forwardRef<TreeButtonProps, "button">(
       ? selectedIndex.includes(index)
       : selectedIndex === index
 
+    const [styles, mergedProps] = useMultiComponentStyle("Tree", {
+      isDisabled,
+      isOpen,
+      isSelected: isSelected ?? selected,
+      ...props,
+    })
+
+    const { className, children, ...rest } = omitThemeProps(mergedProps)
+
     const css: CSSUIObject = {
       ...styles.button,
     }
 
     return (
       <ui.button
-        {...getButtonProps(rest, ref)}
-        data-selected={selected}
+        {...getButtonProps(props, ref)}
         className={cx("ui-tree__button", className)}
         __css={css}
+        {...rest}
       >
         <ui.div
-          data-level={level}
           var={[
             {
               name: "level",

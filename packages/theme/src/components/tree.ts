@@ -12,7 +12,7 @@ export const Tree: ComponentMultiStyle<"Tree"> = {
       py: "3",
       px: "4",
     },
-    button: {
+    button: ({ isSelected }) => ({
       transitionProperty: "common",
       transitionDuration: "normal",
       _focusVisible: {
@@ -28,13 +28,11 @@ export const Tree: ComponentMultiStyle<"Tree"> = {
       alignItems: "center",
       outline: 0,
       width: "100%",
-      "&[data-selected=true]": {
-        bg: ["blackAlpha.200", "whiteAlpha.100"],
-      },
+      bg: isSelected ? ["blackAlpha.200", "whiteAlpha.100"] : undefined,
       div: {
         width: "calc(var(--ui-level)*1.5rem)",
       },
-    },
+    }),
     panel: {},
     icon: ({ isOpen, hidden, isDisabled }) => ({
       fontSize: "1.25em",
