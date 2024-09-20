@@ -11,5 +11,5 @@ const meta: Meta<typeof Tour> = {
 export default meta
 
 export const basic: Story = () => {
-  return <Tour></Tour>
+  return <Tour open steps={[]} current={0} />
 }
