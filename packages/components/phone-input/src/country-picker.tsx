@@ -37,25 +37,19 @@ export type CountryPickerProps = Omit<
 export const CountryPicker = forwardRef<CountryPickerProps, "ul">(
   (props, ref) => {
     const [styles, mergedProps] = useMultiComponentStyle("PhoneInput", props)
-    let { className, placeholder, ...computedProps } =
-      omitThemeProps(mergedProps)
+    let { className, ...computedProps } = omitThemeProps(mergedProps)
 
     const {
       formControlProps,
       getPopoverProps,
       getContainerProps,
       getFieldProps,
-    } = useCountryPicker({
-      ...computedProps,
-      placeholder,
-    })
+    } = useCountryPicker(computedProps)
 
     const computedChildren = useMemo(
       () =>
         COUNTRIES.map((item, i) => {
-          return (
-            <Option key={i} countryCode={item.id} value={item.id} {...item} />
-          )
+          return <Option key={i} countryCode={item.id} {...item} />
         }).filter(Boolean) as ReactElement[],
       [],
     )
@@ -69,7 +63,7 @@ export const CountryPicker = forwardRef<CountryPickerProps, "ul">(
         >
           <ui.div className="ui-country-picker__inner" __css={styles.inner}>
             <PopoverTrigger>
-              <CountrySelectField {...getFieldProps()} ref={ref} />
+              <CountrySelectField {...getFieldProps({}, ref)} />
             </PopoverTrigger>
             <CountryPickerIcon {...formControlProps} />
           </ui.div>

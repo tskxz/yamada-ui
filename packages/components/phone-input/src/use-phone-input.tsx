@@ -15,7 +15,6 @@ import {
   dataAttr,
   funcAll,
   getEventRelatedTarget,
-  handlerAll,
   isContains,
   isHTMLElement,
   mergeRefs,
@@ -41,7 +40,6 @@ type PhoneInputContext = Omit<
   UsePhoneInputProps,
   "value" | "defaultValue" | "onChange" | "isEmpty"
 > & {
-  // value: MaybeValue | undefined
   label: MaybeValue | undefined
   onChange: (newValue: string) => void
   onChangeLabel: (newValue: string, runOmit?: boolean) => void
@@ -127,7 +125,9 @@ export const useCountryPicker = <T extends string>({
   )
 
   const descendants = useSelectDescendants()
+
   const [focusedIndex, setFocusedIndex] = useState<number>(-1)
+
   const containerRef = useRef<HTMLDivElement>(null)
   const fieldRef = useRef<HTMLDivElement>(null)
   const listRef = useRef<HTMLUListElement>(null)
@@ -137,7 +137,6 @@ export const useCountryPicker = <T extends string>({
   const [dialCode, setDialCode] = useState<T | undefined>(undefined)
 
   const isFocused = focusedIndex > -1
-  const isEmptyValue = !label
 
   const onFocusFirst = useCallback(() => {
     const id = setTimeout(() => {
@@ -201,8 +200,8 @@ export const useCountryPicker = <T extends string>({
     timeoutIds.current.add(id)
   }, [descendants, focusedIndex, setFocusedIndex])
 
-  const onFocusFirstOrSelected = onFocusFirst
-  const onFocusLastOrSelected = isEmptyValue ? onFocusLast : onFocusSelected
+  const onFocusFirstOrSelected = !label ? onFocusFirst : onFocusSelected
+  const onFocusLastOrSelected = !label ? onFocusLast : onFocusSelected
 
   const onChangeLabel = useCallback(
     (newValue: string) => {
@@ -241,16 +240,16 @@ export const useCountryPicker = <T extends string>({
   })
 
   const onOpen = useCallback(() => {
-    if (formControlProps.disabled || formControlProps.readOnly) return
-
     onInternalOpen()
-  }, [formControlProps, onInternalOpen])
+  }, [onInternalOpen])
 
   const onSelect = useCallback(() => {
     let enabledValue = descendants.value(focusedIndex)
 
     if (!enabledValue) return
+
     const value = enabledValue.node.dataset.value ?? ""
+
     onChange(value)
 
     onClose()
@@ -292,7 +291,7 @@ export const useCountryPicker = <T extends string>({
         ArrowDown: isFocused
           ? () => onFocusNext()
           : !isOpen
-            ? funcAll(onOpen, onFocusFirst)
+            ? funcAll(onOpen, onFocusFirstOrSelected)
             : undefined,
         ArrowUp: isFocused
           ? () => onFocusPrev()
@@ -382,33 +381,22 @@ export const useCountryPicker = <T extends string>({
   )
 
   const getFieldProps: UIPropGetter = useCallback(
-    (props = {}, ref = null) => {
-      return {
-        "aria-label": "select country",
-        role: "combobox",
-        ref: mergeRefs(fieldRef, ref),
-        tabIndex: 0,
-        ...fieldProps,
-        ...props,
-        "data-active": dataAttr(isOpen),
-        "data-placeholder": dataAttr(!label?.length),
-        "aria-controls": listRef.current?.id,
-        "aria-activedescendant": descendants.value(focusedIndex)?.node.id,
-        "aria-expanded": isOpen,
-        onFocus: handlerAll(props.onFocus, rest.onFocus, onFocus),
-        onKeyDown: handlerAll(props.onKeyDown, rest.onKeyDown, onKeyDown),
-      }
-    },
-    [
-      descendants,
-      fieldProps,
-      focusedIndex,
-      isOpen,
-      label,
-      rest,
+    (props = {}, ref = null) => ({
+      "aria-label": "Select the country",
+      role: "combobox",
+      ref: mergeRefs(fieldRef, ref),
+      tabIndex: 0,
+      ...fieldProps,
+      ...props,
+      "data-active": dataAttr(isOpen),
+      "data-placeholder": dataAttr(label === undefined),
+      "aria-controls": listRef.current?.id,
+      "aria-activedescendant": descendants.value(focusedIndex)?.node.id,
+      "aria-expanded": isOpen,
       onFocus,
       onKeyDown,
-    ],
+    }),
+    [descendants, fieldProps, focusedIndex, isOpen, label, onFocus, onKeyDown],
   )
 
   return {
@@ -528,17 +516,11 @@ export const useCountryPickerOption = (props: UseCountryPickerOptionProps) => {
 
   const itemRef = useRef<HTMLLIElement>(null)
 
-  const { index, register, descendants } = useSelectDescendant()
+  const { index, register } = useSelectDescendant()
 
-  const values = descendants.values()
-  const frontValues = values.slice(0, index)
-
-  const isDuplicated = frontValues.some(
-    ({ node }) => node.dataset.countryCode === (countryCode ?? ""),
-  )
-
-  const isSelected = !isDuplicated && (countryCode ?? "") === label
+  const isSelected = (countryCode ?? "") === label
   const isFocused = index === focusedIndex
+  // console.log(focusedIndex, index)
 
   const onClick = useCallback(
     (ev: MouseEvent<HTMLLIElement>) => {
@@ -566,30 +548,34 @@ export const useCountryPickerOption = (props: UseCountryPickerOptionProps) => {
     if (isSelected) onChangeLabel(countryCode ?? "")
   }, [countryCode, isSelected, onChangeLabel])
 
-  const getOptionProps: UIPropGetter<"li"> = useCallback(() => {
-    return {
-      role: "option",
-      tabIndex: -1,
-      ...computedProps,
-      ref: mergeRefs(itemRef, register),
-      "data-value": countryCode ?? "",
-      "data-country-code": countryCode ?? "",
-      "data-dial-code": dialCode ?? "",
-      "data-focus": dataAttr(isFocused),
-      "data-disabled": dataAttr(false),
-      "aria-checked": ariaAttr(isSelected),
-      "aria-disabled": ariaAttr(false),
-      onClick: handlerAll(onClick),
-    }
-  }, [
-    countryCode,
-    computedProps,
-    isFocused,
-    isSelected,
-    onClick,
-    register,
-    dialCode,
-  ])
+  const getOptionProps: UIPropGetter<"li"> = useCallback(
+    (props = {}, ref = null) => {
+      return {
+        role: "option",
+        tabIndex: -1,
+        ...props,
+        ...computedProps,
+        ref: mergeRefs(itemRef, ref, register),
+        "data-value": countryCode ?? "",
+        "data-country-code": countryCode ?? "",
+        "data-dial-code": dialCode ?? "",
+        "data-focus": dataAttr(isFocused),
+        "data-disabled": dataAttr(false),
+        "aria-checked": ariaAttr(isSelected),
+        "aria-disabled": ariaAttr(false),
+        onClick: onClick,
+      }
+    },
+    [
+      countryCode,
+      computedProps,
+      isFocused,
+      isSelected,
+      onClick,
+      register,
+      dialCode,
+    ],
+  )
 
   return {
     countryCode,

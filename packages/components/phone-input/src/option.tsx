@@ -20,8 +20,7 @@ export const Option = forwardRef<OptionProps, "li">(
         id={id}
         className={cx("ui-country-picker__item", className)}
         __css={styles.item}
-        {...getOptionProps()}
-        ref={ref}
+        {...getOptionProps({}, ref)}
       >
         <OptionIcon opacity={isSelected ? 1 : 0}>
           <CheckIcon />

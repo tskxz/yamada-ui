@@ -29,7 +29,6 @@ export type PhoneInputProps = ThemeProps<"PhoneInput"> &
 export const PhoneInput = forwardRef<PhoneInputProps, "div">((props, ref) => {
   const [styles, mergedProps] = useMultiComponentStyle("PhoneInput", props)
   let {
-    placeholder,
     defaultValue = "",
     inputProps,
     ...computedProps
@@ -37,7 +36,6 @@ export const PhoneInput = forwardRef<PhoneInputProps, "div">((props, ref) => {
 
   const { onClose, descendants, dialCode, ...rest } = useCountryPicker({
     ...computedProps,
-    placeholder,
     defaultValue,
   })
 
@@ -47,7 +45,6 @@ export const PhoneInput = forwardRef<PhoneInputProps, "div">((props, ref) => {
         value={{
           ...rest,
           onClose,
-          placeholder,
           styles,
         }}
       >
