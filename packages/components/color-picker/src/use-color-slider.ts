@@ -335,6 +335,25 @@ export const useColorSlider = ({
       const n = thumbPercent
       const { width: w } = thumbSize ?? { width: 0 }
 
+      const hslValue = `hsl(${value}, 100%, 50%)`
+      const colorName = (() => {
+        if (value >= 0 && value < 15) return "Red"
+        if (value >= 15 && value < 45) return "Orange"
+        if (value >= 45 && value < 75) return "Yellow"
+        if (value >= 75 && value < 105) return "Lime"
+        if (value >= 105 && value < 135) return "Green"
+        if (value >= 135 && value < 165) return "Cyan"
+        if (value >= 165 && value < 195) return "Sky Blue"
+        if (value >= 195 && value < 225) return "Blue"
+        if (value >= 225 && value < 255) return "Indigo"
+        if (value >= 255 && value < 285) return "Violet"
+        if (value >= 285 && value < 315) return "Magenta"
+        if (value >= 315 && value < 345) return "Pink"
+        return "Red"
+      })()
+
+      const ariaValueText = `${value}°, ${colorName}`
+
       const style: CSSProperties = {
         ...props.style,
         position: "absolute",
@@ -345,13 +364,14 @@ export const useColorSlider = ({
 
       return {
         "aria-label": "Slider thumb",
-        bg: thumbColor ?? `hsl(${value}, 100%, 50%)`,
+        bg: thumbColor ?? hslValue,
         ...formControlProps,
         "aria-readonly": ariaReadonly,
         ...props,
         ref: mergeRefs(ref, thumbRef),
         tabIndex: isInteractive && focusThumbOnChange ? 0 : undefined,
         role: "slider",
+        "aria-valuetext": ariaValueText,
         "aria-valuenow": value,
         "aria-valuemin": min,
         "aria-valuemax": max,
