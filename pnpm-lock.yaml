@@ -2801,9 +2801,15 @@ importers:
 
   packages/components/tour:
     dependencies:
+      '@yamada-ui/button':
+        specifier: workspace:*
+        version: link:../button
       '@yamada-ui/core':
         specifier: workspace:*
         version: link:../../core
+      '@yamada-ui/popover':
+        specifier: workspace:*
+        version: link:../popover
       '@yamada-ui/utils':
         specifier: workspace:*
         version: link:../../utils
