@@ -2,6 +2,7 @@
 title: RadialChart
 description: "`RadialChart` is a component for drawing radial charts to compare multiple sets of data."
 package_name: "@yamada-ui/charts"
+order: 17
 label: New
 is_tabs: true
 with_description: true
@@ -317,11 +318,11 @@ const data = useMemo(
 
 return (
   <VStack>
-    <RadialChart data={data} withPolarGrid endAngle={-180} />
+    <RadialChart data={data} withPolarGrid endAngle={-270} />
     <RadialChart
       data={data}
       withPolarGrid
-      endAngle={-180}
+      endAngle={-270}
       polarGridProps={{ gridType: "circle" }}
     />
   </VStack>

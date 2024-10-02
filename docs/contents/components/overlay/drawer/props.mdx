@@ -2,6 +2,7 @@
 title: Drawer
 description: "`Drawer` is a component for a panel that appears from the edge of the screen."
 package_name: "@yamada-ui/modal"
+order: 1
 with_description: true
 tab: Props
 ---
@@ -31,7 +32,8 @@ tab: Props
 <PropsCard
   id="drawer-as"
   name="as"
-  type='"symbol" | "object" | "clipPath" | "filter" | "mask" | "marker" | "text" | "g" | "p" | "var" | "big" | "link" | "small" | "sub" | "sup" | "style" | "animate" | "section" | "a" | "abbr" | ... 148 more ... | "textPath"'
+  type='"symbol" | "object" | "clipPath" | "text" | "g" | "marker" | "mask" | "p" | "filter" | "style" | "animate" | "section" | "a" | "abbr" | "address" | "area" | "article" | "aside" | ... 150 more ... | "textPath"'
+  description={"The HTML element to render."}
 />
 
 <PropsCard
@@ -83,6 +85,13 @@ tab: Props
 />
 
 <PropsCard
+  id="drawer-containerprops"
+  name="containerProps"
+  type="HTMLUIProps"
+  description={"Props for modal container element."}
+/>
+
+<PropsCard
   id="drawer-dragconstraints"
   name="dragConstraints"
   type="number"
@@ -119,7 +128,7 @@ tab: Props
 <PropsCard
   id="drawer-duration"
   name="duration"
-  type='number | Partial<Record<"exit" | "enter", number>>'
+  type="number | MotionLifecycleProps<number>"
   description={"The animation duration."}
 />
 
@@ -265,7 +274,8 @@ tab: Props
 <PropsCard
   id="draweroverlay-as"
   name="as"
-  type='"symbol" | "object" | "clipPath" | "filter" | "mask" | "marker" | "text" | "g" | "p" | "var" | "big" | "link" | "small" | "sub" | "sup" | "style" | "animate" | "section" | "a" | "abbr" | ... 148 more ... | "textPath"'
+  type='"symbol" | "object" | "clipPath" | "text" | "g" | "marker" | "mask" | "p" | "filter" | "style" | "animate" | "section" | "a" | "abbr" | "address" | "area" | "article" | "aside" | ... 150 more ... | "textPath"'
+  description={"The HTML element to render."}
 />
 
 ### DrawerCloseButtonProps

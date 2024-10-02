@@ -1,3 +1,4 @@
+import { FC } from "@yamada-ui/core"
 import type { CSSUIObject } from "@yamada-ui/core"
 import type { IconProps } from "@yamada-ui/icon"
 import { Icon, ChevronIcon } from "@yamada-ui/icon"
@@ -12,14 +13,13 @@ import {
   useTableStyles,
 } from "@yamada-ui/native-table"
 import { runIfFunc, handlerAll, cx } from "@yamada-ui/utils"
-import type { FC } from "react"
 import { useMemo } from "react"
 import type { SortDirection, Column } from "./use-table"
 import { useTableContext, render } from "./use-table"
 
-export type TableHeadProps = NativeTableHeadProps
+export interface TableHeadProps extends NativeTableHeadProps {}
 
-export const Thead = ({ ...rest }: TableHeadProps) => {
+export const Thead: FC = ({ ...rest }: TableHeadProps) => {
   const { headerGroups, headerGroupProps, headerProps, sortIconProps } =
     useTableContext()
 
@@ -132,9 +132,18 @@ export const Thead = ({ ...rest }: TableHeadProps) => {
   )
 }
 
-export type SortIconProps = IconProps & { isSorted: false | SortDirection }
+Thead.displayName = "Thead"
+Thead.__ui__ = "Thead"
 
-const SortIcon: FC<SortIconProps> = ({ isSorted, className, ...rest }) => {
+export interface SortIconProps extends IconProps {
+  isSorted: false | SortDirection
+}
+
+export const SortIcon: FC<SortIconProps> = ({
+  isSorted,
+  className,
+  ...rest
+}) => {
   const styles = useTableStyles()
 
   const css: CSSUIObject = {

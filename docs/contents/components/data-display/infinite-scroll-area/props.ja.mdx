@@ -3,6 +3,7 @@ title: InfiniteScrollArea
 description: >-
   `InfiniteScrollArea`は、無限スクロール機能を提供するコンポーネントです。このコンポーネントは、コンポーネントの終わりに達したときに次のデータセットを自動的に読み込み、表示することで、スムーズなスクロール体験を提供します。
 package_name: "@yamada-ui/infinite-scroll-area"
+order: 1
 with_description: true
 tab: Props
 ---
@@ -113,6 +114,15 @@ tab: Props
 />
 
 <PropsCard
+  id="infinitescrollarea-rootmargin"
+  name="rootMargin"
+  type="string"
+  description={
+    'Margin around the root. Can have values similar to the CSS margin property,\ne.g. "10px 20px 30px 40px" (top, right, bottom, left).'
+  }
+/>
+
+<PropsCard
   id="infinitescrollarea-rootref"
   name="rootRef"
   type="RefObject<HTMLElement>"
@@ -139,9 +149,18 @@ tab: Props
 />
 
 <PropsCard
+  id="infinitescrollarea-threshold"
+  name="threshold"
+  type="number | number[]"
+  description={
+    "Either a single number or an array of numbers which indicate at what percentage of the target's visibility the observer's callback should be executed."
+  }
+/>
+
+<PropsCard
   id="infinitescrollarea-triggerprops"
   name="triggerProps"
-  type='HTMLUIProps<"div">'
+  type="HTMLUIProps"
   description={"Props for infinite scroll area trigger component."}
 />
 

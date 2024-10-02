@@ -3,11 +3,12 @@ import type {
   ThemeProps,
   CSSUIObject,
   AlertStatuses,
+  FC,
 } from "@yamada-ui/core"
 import {
   ui,
   forwardRef,
-  useMultiComponentStyle,
+  useComponentMultiStyle,
   omitThemeProps,
   useTheme,
 } from "@yamada-ui/core"
@@ -15,7 +16,6 @@ import { InfoIcon, WarningIcon, CheckIcon } from "@yamada-ui/icon"
 import type { LoadingProps } from "@yamada-ui/loading"
 import { Loading } from "@yamada-ui/loading"
 import { createContext, cx } from "@yamada-ui/utils"
-import type { FC } from "react"
 
 const defaultStatuses = {
   info: { icon: InfoIcon, colorScheme: "info" },
@@ -27,9 +27,9 @@ const defaultStatuses = {
 
 export type Status = keyof typeof defaultStatuses
 
-type AlertContext = {
+interface AlertContext {
   status: Status
-  styles: Record<string, CSSUIObject>
+  styles: { [key: string]: CSSUIObject }
 }
 
 const [AlertProvider, useAlert] = createContext<AlertContext>({
@@ -45,7 +45,7 @@ export const getStatusColorScheme = (
 export const getStatusIcon = (status: Status, statuses?: AlertStatuses) =>
   statuses?.[status]?.icon ?? defaultStatuses[status].icon
 
-type AlertOptions = {
+interface AlertOptions {
   /**
    * The status of the alert.
    *
@@ -54,7 +54,10 @@ type AlertOptions = {
   status?: Status
 }
 
-export type AlertProps = HTMLUIProps<"div"> & ThemeProps<"Alert"> & AlertOptions
+export interface AlertProps
+  extends HTMLUIProps,
+    ThemeProps<"Alert">,
+    AlertOptions {}
 
 /**
  * `Alert` is a component that conveys information to the user.
@@ -68,7 +71,7 @@ export const Alert = forwardRef<AlertProps, "div">(
 
     colorScheme ??= getStatusColorScheme(status, statuses)
 
-    const [styles, mergedProps] = useMultiComponentStyle("Alert", {
+    const [styles, mergedProps] = useComponentMultiStyle("Alert", {
       ...props,
       colorScheme,
     })
@@ -99,7 +102,10 @@ export const Alert = forwardRef<AlertProps, "div">(
   },
 )
 
-export type AlertIconProps = HTMLUIProps<"span"> & {
+Alert.displayName = "Alert"
+Alert.__ui__ = "Alert"
+
+export interface AlertIconProps extends HTMLUIProps<"span"> {
   variant?: LoadingProps["variant"]
 }
 
@@ -137,7 +143,10 @@ export const AlertIcon: FC<AlertIconProps> = ({
   )
 }
 
-export type AlertTitleProps = HTMLUIProps<"p">
+AlertIcon.displayName = "AlertIcon"
+AlertIcon.__ui__ = "AlertIcon"
+
+export interface AlertTitleProps extends HTMLUIProps<"p"> {}
 
 export const AlertTitle = forwardRef<AlertTitleProps, "p">(
   ({ className, ...rest }, ref) => {
@@ -159,7 +168,10 @@ export const AlertTitle = forwardRef<AlertTitleProps, "p">(
   },
 )
 
-export type AlertDescriptionProps = HTMLUIProps<"span">
+AlertTitle.displayName = "AlertTitle"
+AlertTitle.__ui__ = "AlertTitle"
+
+export interface AlertDescriptionProps extends HTMLUIProps<"span"> {}
 
 export const AlertDescription = forwardRef<AlertDescriptionProps, "span">(
   ({ className, ...rest }, ref) => {
@@ -179,3 +191,6 @@ export const AlertDescription = forwardRef<AlertDescriptionProps, "span">(
     )
   },
 )
+
+AlertDescription.displayName = "AlertDescription"
+AlertDescription.__ui__ = "AlertDescription"

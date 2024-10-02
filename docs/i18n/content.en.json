@@ -42,6 +42,27 @@
     }
   },
   {
+    "title": "Visual Studio Code",
+    "type": "fragment",
+    "slug": "/community/contributing#visual-studio-code",
+    "hierarchy": {
+      "lv1": "Contributing to Yamada UI",
+      "lv2": "Development",
+      "lv3": "Visual Studio Code"
+    }
+  },
+  {
+    "title": "[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)",
+    "type": "fragment",
+    "slug": "/community/contributing#eslint",
+    "hierarchy": {
+      "lv1": "Contributing to Yamada UI",
+      "lv2": "Development",
+      "lv3": "Visual Studio Code",
+      "lv4": "[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)"
+    }
+  },
+  {
     "title": "Update the Document",
     "type": "fragment",
     "slug": "/community/contributing#update-the-document",
@@ -180,6 +201,15 @@
       "lv1": "Team and Contributors",
       "lv2": "Sponsors",
       "lv3": "Individuals"
+    }
+  },
+  {
+    "title": "Emeriti contributors",
+    "type": "fragment",
+    "slug": "/community/team#emeriti-contributors",
+    "hierarchy": {
+      "lv1": "Team and Contributors",
+      "lv2": "Emeriti contributors"
     }
   },
   {
@@ -1198,6 +1228,16 @@
     }
   },
   {
+    "title": "Display text in the center",
+    "type": "fragment",
+    "slug": "/components/data-display/donut-chart#display-text-in-the-center",
+    "hierarchy": {
+      "lv1": "DonutChart",
+      "lv2": "Usage",
+      "lv3": "Display text in the center"
+    }
+  },
+  {
     "title": "Data Display",
     "type": "page",
     "description": "Components for constructing the display of project data, such as `Table` and `Calendar`, are available.",
@@ -1971,6 +2011,129 @@
       "lv1": "RadarChart",
       "lv2": "Usage",
       "lv3": "Adjust Dashed Lines"
+    }
+  },
+  {
+    "title": "RadialChart",
+    "type": "page",
+    "description": "`RadialChart` is a component for drawing radial charts to compare multiple sets of data.",
+    "slug": "/components/data-display/radial-chart",
+    "hierarchy": { "lv1": "RadialChart" }
+  },
+  {
+    "title": "Import",
+    "type": "fragment",
+    "slug": "/components/data-display/radial-chart#import",
+    "hierarchy": { "lv1": "RadialChart", "lv2": "Import" }
+  },
+  {
+    "title": "Usage",
+    "type": "fragment",
+    "slug": "/components/data-display/radial-chart#usage",
+    "hierarchy": { "lv1": "RadialChart", "lv2": "Usage" }
+  },
+  {
+    "title": "Change Size",
+    "type": "fragment",
+    "slug": "/components/data-display/radial-chart#change-size",
+    "hierarchy": { "lv1": "RadialChart", "lv2": "Usage", "lv3": "Change Size" }
+  },
+  {
+    "title": "Display Legend",
+    "type": "fragment",
+    "slug": "/components/data-display/radial-chart#display-legend",
+    "hierarchy": {
+      "lv1": "RadialChart",
+      "lv2": "Usage",
+      "lv3": "Display Legend"
+    }
+  },
+  {
+    "title": "Adjust Spacing",
+    "type": "fragment",
+    "slug": "/components/data-display/radial-chart#adjust-spacing",
+    "hierarchy": {
+      "lv1": "RadialChart",
+      "lv2": "Usage",
+      "lv3": "Adjust Spacing"
+    }
+  },
+  {
+    "title": "Adjust Inner and Outer Radius",
+    "type": "fragment",
+    "slug": "/components/data-display/radial-chart#adjust-inner-and-outer-radius",
+    "hierarchy": {
+      "lv1": "RadialChart",
+      "lv2": "Usage",
+      "lv3": "Adjust Inner and Outer Radius"
+    }
+  },
+  {
+    "title": "Adjust Start and End Angles",
+    "type": "fragment",
+    "slug": "/components/data-display/radial-chart#adjust-start-and-end-angles",
+    "hierarchy": {
+      "lv1": "RadialChart",
+      "lv2": "Usage",
+      "lv3": "Adjust Start and End Angles"
+    }
+  },
+  {
+    "title": "Display Labels",
+    "type": "fragment",
+    "slug": "/components/data-display/radial-chart#display-labels",
+    "hierarchy": {
+      "lv1": "RadialChart",
+      "lv2": "Usage",
+      "lv3": "Display Labels"
+    }
+  },
+  {
+    "title": "Switch Data Displayed in Tooltip",
+    "type": "fragment",
+    "slug": "/components/data-display/radial-chart#switch-data-displayed-in-tooltip",
+    "hierarchy": {
+      "lv1": "RadialChart",
+      "lv2": "Usage",
+      "lv3": "Switch Data Displayed in Tooltip"
+    }
+  },
+  {
+    "title": "Hide Tooltip",
+    "type": "fragment",
+    "slug": "/components/data-display/radial-chart#hide-tooltip",
+    "hierarchy": { "lv1": "RadialChart", "lv2": "Usage", "lv3": "Hide Tooltip" }
+  },
+  {
+    "title": "Format",
+    "type": "fragment",
+    "slug": "/components/data-display/radial-chart#format",
+    "hierarchy": { "lv1": "RadialChart", "lv2": "Usage", "lv3": "Format" }
+  },
+  {
+    "title": "Adjust Opacity",
+    "type": "fragment",
+    "slug": "/components/data-display/radial-chart#adjust-opacity",
+    "hierarchy": {
+      "lv1": "RadialChart",
+      "lv2": "Usage",
+      "lv3": "Adjust Opacity"
+    }
+  },
+  {
+    "title": "Display Grid",
+    "type": "fragment",
+    "slug": "/components/data-display/radial-chart#display-grid",
+    "hierarchy": { "lv1": "RadialChart", "lv2": "Usage", "lv3": "Display Grid" }
+  },
+  {
+    "title": "Display Background",
+    "type": "fragment",
+    "slug": "/components/data-display/radial-chart#display-background",
+    "hierarchy": {
+      "lv1": "RadialChart",
+      "lv2": "Usage",
+      "lv3": "Display Background"
     }
   },
   {
@@ -4121,6 +4284,16 @@
     }
   },
   {
+    "title": "Add elements to a dropdown",
+    "type": "fragment",
+    "slug": "/components/forms/date-picker#add-elements-to-a-dropdown",
+    "hierarchy": {
+      "lv1": "DatePicker",
+      "lv2": "Usage",
+      "lv3": "Add elements to a dropdown"
+    }
+  },
+  {
     "title": "Control",
     "type": "fragment",
     "slug": "/components/forms/date-picker#control",
@@ -4941,11 +5114,11 @@
     "hierarchy": { "lv1": "IconButton", "lv2": "Usage", "lv3": "Disable" }
   },
   {
-    "title": "Form",
+    "title": "Forms",
     "type": "page",
     "description": "Components for building forms in the project, such as `Input` and `Select`, are available.",
     "slug": "/components/forms",
-    "hierarchy": { "lv1": "Form" }
+    "hierarchy": { "lv1": "Forms" }
   },
   {
     "title": "Input",
@@ -5276,6 +5449,16 @@
     }
   },
   {
+    "title": "Add elements to a dropdown",
+    "type": "fragment",
+    "slug": "/components/forms/month-picker#add-elements-to-a-dropdown",
+    "hierarchy": {
+      "lv1": "MonthPicker",
+      "lv2": "Usage",
+      "lv3": "Add elements to a dropdown"
+    }
+  },
+  {
     "title": "Control",
     "type": "fragment",
     "slug": "/components/forms/month-picker#control",
@@ -5338,6 +5521,26 @@
       "lv1": "MultiAutocomplete",
       "lv2": "Usage",
       "lv3": "Set Default Values"
+    }
+  },
+  {
+    "title": "Add header to a dropdown",
+    "type": "fragment",
+    "slug": "/components/forms/multi-autocomplete#add-header-to-a-dropdown",
+    "hierarchy": {
+      "lv1": "MultiAutocomplete",
+      "lv2": "Usage",
+      "lv3": "Add header to a dropdown"
+    }
+  },
+  {
+    "title": "Add footer to a dropdown",
+    "type": "fragment",
+    "slug": "/components/forms/multi-autocomplete#add-footer-to-a-dropdown",
+    "hierarchy": {
+      "lv1": "MultiAutocomplete",
+      "lv2": "Usage",
+      "lv3": "Add footer to a dropdown"
     }
   },
   {
@@ -5913,6 +6116,16 @@
       "lv1": "MultiDatePicker",
       "lv2": "Usage",
       "lv3": "Customize Icon"
+    }
+  },
+  {
+    "title": "Add elements to a dropdown",
+    "type": "fragment",
+    "slug": "/components/forms/multi-date-picker#add-elements-to-a-dropdown",
+    "hierarchy": {
+      "lv1": "MultiDatePicker",
+      "lv2": "Usage",
+      "lv3": "Add elements to a dropdown"
     }
   },
   {
@@ -7081,6 +7294,16 @@
     }
   },
   {
+    "title": "Add elements to a dropdown",
+    "type": "fragment",
+    "slug": "/components/forms/range-date-picker#add-elements-to-a-dropdown",
+    "hierarchy": {
+      "lv1": "RangeDatePicker",
+      "lv2": "Usage",
+      "lv3": "Add elements to a dropdown"
+    }
+  },
+  {
     "title": "Control",
     "type": "fragment",
     "slug": "/components/forms/range-date-picker#control",
@@ -8068,7 +8291,7 @@
   {
     "title": "Toggle",
     "type": "page",
-    "description": "`Button` is a component that has two states: on or off.",
+    "description": "`Toggle` is a component that has two states: on or off.",
     "slug": "/components/forms/toggle",
     "hierarchy": { "lv1": "Toggle" }
   },
@@ -8319,6 +8542,16 @@
       "lv1": "YearPicker",
       "lv2": "Usage",
       "lv3": "Customize Icon"
+    }
+  },
+  {
+    "title": "Add elements to a dropdown",
+    "type": "fragment",
+    "slug": "/components/forms/year-picker#add-elements-to-a-dropdown",
+    "hierarchy": {
+      "lv1": "YearPicker",
+      "lv2": "Usage",
+      "lv3": "Add elements to a dropdown"
     }
   },
   {
@@ -12916,7 +13149,7 @@
   {
     "title": "CLI",
     "type": "page",
-    "description": "Use CLI commands to generate types for your customized theme, such as colors and font sizes.",
+    "description": "Generate types of customized themes using CLI commands.",
     "slug": "/styled-system/cli",
     "hierarchy": { "lv1": "CLI" }
   },
@@ -13130,6 +13363,165 @@
     "hierarchy": { "lv1": "Configure" }
   },
   {
+    "title": "CSS Custom Properties (Variables)",
+    "type": "page",
+    "description": "How to create and reference CSS custom properties (variables) in Yamada UI.",
+    "slug": "/styled-system/css-custom-properties",
+    "hierarchy": { "lv1": "CSS Custom Properties (Variables)" }
+  },
+  {
+    "title": "Usage",
+    "type": "fragment",
+    "slug": "/styled-system/css-custom-properties#usage",
+    "hierarchy": { "lv1": "CSS Custom Properties (Variables)", "lv2": "Usage" }
+  },
+  {
+    "title": "CSS Value Functions",
+    "type": "page",
+    "description": "Yamada UI provides various functions that make CSS value functions more convenient.",
+    "slug": "/styled-system/css-value-functions",
+    "hierarchy": { "lv1": "CSS Value Functions" }
+  },
+  {
+    "title": "Calculation & Comparison",
+    "type": "fragment",
+    "slug": "/styled-system/css-value-functions#calculation--comparison",
+    "hierarchy": {
+      "lv1": "CSS Value Functions",
+      "lv2": "Calculation & Comparison"
+    }
+  },
+  {
+    "title": "calc",
+    "type": "fragment",
+    "slug": "/styled-system/css-value-functions#calc",
+    "hierarchy": {
+      "lv1": "CSS Value Functions",
+      "lv2": "Calculation & Comparison",
+      "lv3": "calc"
+    }
+  },
+  {
+    "title": "min",
+    "type": "fragment",
+    "slug": "/styled-system/css-value-functions#min",
+    "hierarchy": {
+      "lv1": "CSS Value Functions",
+      "lv2": "Calculation & Comparison",
+      "lv3": "min"
+    }
+  },
+  {
+    "title": "max",
+    "type": "fragment",
+    "slug": "/styled-system/css-value-functions#max",
+    "hierarchy": {
+      "lv1": "CSS Value Functions",
+      "lv2": "Calculation & Comparison",
+      "lv3": "max"
+    }
+  },
+  {
+    "title": "clamp",
+    "type": "fragment",
+    "slug": "/styled-system/css-value-functions#clamp",
+    "hierarchy": {
+      "lv1": "CSS Value Functions",
+      "lv2": "Calculation & Comparison",
+      "lv3": "clamp"
+    }
+  },
+  {
+    "title": "Color",
+    "type": "fragment",
+    "slug": "/styled-system/css-value-functions#color",
+    "hierarchy": { "lv1": "CSS Value Functions", "lv2": "Color" }
+  },
+  {
+    "title": "mix",
+    "type": "fragment",
+    "slug": "/styled-system/css-value-functions#mix",
+    "hierarchy": { "lv1": "CSS Value Functions", "lv2": "Color", "lv3": "mix" }
+  },
+  {
+    "title": "tint",
+    "type": "fragment",
+    "slug": "/styled-system/css-value-functions#tint",
+    "hierarchy": { "lv1": "CSS Value Functions", "lv2": "Color", "lv3": "tint" }
+  },
+  {
+    "title": "shade",
+    "type": "fragment",
+    "slug": "/styled-system/css-value-functions#shade",
+    "hierarchy": {
+      "lv1": "CSS Value Functions",
+      "lv2": "Color",
+      "lv3": "shade"
+    }
+  },
+  {
+    "title": "transparentize",
+    "type": "fragment",
+    "slug": "/styled-system/css-value-functions#transparentize",
+    "hierarchy": {
+      "lv1": "CSS Value Functions",
+      "lv2": "Color",
+      "lv3": "transparentize"
+    }
+  },
+  {
+    "title": "tone",
+    "type": "fragment",
+    "slug": "/styled-system/css-value-functions#tone",
+    "hierarchy": { "lv1": "CSS Value Functions", "lv2": "Color", "lv3": "tone" }
+  },
+  {
+    "title": "Gradient",
+    "type": "fragment",
+    "slug": "/styled-system/css-value-functions#gradient",
+    "hierarchy": { "lv1": "CSS Value Functions", "lv2": "Gradient" }
+  },
+  {
+    "title": "Customizing Colors",
+    "type": "fragment",
+    "slug": "/styled-system/css-value-functions#customizing-colors",
+    "hierarchy": {
+      "lv1": "CSS Value Functions",
+      "lv2": "Gradient",
+      "lv3": "Customizing Colors"
+    }
+  },
+  {
+    "title": "Gradient Tokens",
+    "type": "fragment",
+    "slug": "/styled-system/css-value-functions#gradient-tokens",
+    "hierarchy": {
+      "lv1": "CSS Value Functions",
+      "lv2": "Gradient",
+      "lv3": "Gradient Tokens"
+    }
+  },
+  {
+    "title": "Text Gradient",
+    "type": "fragment",
+    "slug": "/styled-system/css-value-functions#text-gradient",
+    "hierarchy": {
+      "lv1": "CSS Value Functions",
+      "lv2": "Gradient",
+      "lv3": "Text Gradient"
+    }
+  },
+  {
+    "title": "Responsive Gradient",
+    "type": "fragment",
+    "slug": "/styled-system/css-value-functions#responsive-gradient",
+    "hierarchy": {
+      "lv1": "CSS Value Functions",
+      "lv2": "Gradient",
+      "lv3": "Responsive Gradient"
+    }
+  },
+  {
     "title": "Global Styles",
     "type": "page",
     "description": "How to customize and add global styles.",
@@ -13149,52 +13541,30 @@
     "hierarchy": { "lv1": "Global Styles", "lv2": "Adding Global Styles" }
   },
   {
-    "title": "Gradient",
-    "type": "page",
-    "description": "Yamada UI supports readily usable gradients.",
-    "slug": "/styled-system/gradient",
-    "hierarchy": { "lv1": "Gradient" }
-  },
-  {
-    "title": "Usage",
-    "type": "fragment",
-    "slug": "/styled-system/gradient#usage",
-    "hierarchy": { "lv1": "Gradient", "lv2": "Usage" }
-  },
-  {
-    "title": "Color Customization",
-    "type": "fragment",
-    "slug": "/styled-system/gradient#color-customization",
-    "hierarchy": {
-      "lv1": "Gradient",
-      "lv2": "Usage",
-      "lv3": "Color Customization"
-    }
-  },
-  {
-    "title": "Gradient Tokens",
-    "type": "fragment",
-    "slug": "/styled-system/gradient#gradient-tokens",
-    "hierarchy": { "lv1": "Gradient", "lv2": "Usage", "lv3": "Gradient Tokens" }
-  },
-  {
-    "title": "Text Gradient",
-    "type": "fragment",
-    "slug": "/styled-system/gradient#text-gradient",
-    "hierarchy": { "lv1": "Gradient", "lv2": "Text Gradient" }
-  },
-  {
-    "title": "Responsive Gradient",
-    "type": "fragment",
-    "slug": "/styled-system/gradient#responsive-gradient",
-    "hierarchy": { "lv1": "Gradient", "lv2": "Responsive Gradient" }
-  },
-  {
     "title": "Styled System",
     "type": "page",
     "description": "Learn about the Style props and themes of Yamada UI. Style props is a method to change the style of a component just by passing props to the component.",
     "slug": "/styled-system",
     "hierarchy": { "lv1": "Styled System" }
+  },
+  {
+    "title": "Interpolation",
+    "type": "page",
+    "description": "A method for easily accessing CSS custom properties (variables) in the Yamada UI style system.",
+    "slug": "/styled-system/interpolation",
+    "hierarchy": { "lv1": "Interpolation" }
+  },
+  {
+    "title": "Usage",
+    "type": "fragment",
+    "slug": "/styled-system/interpolation#usage",
+    "hierarchy": { "lv1": "Interpolation", "lv2": "Usage" }
+  },
+  {
+    "title": "Referencing Theme Tokens",
+    "type": "fragment",
+    "slug": "/styled-system/interpolation#referencing-theme-tokens",
+    "hierarchy": { "lv1": "Interpolation", "lv2": "Referencing Theme Tokens" }
   },
   {
     "title": "Loading",
@@ -13708,6 +14078,15 @@
     "type": "fragment",
     "slug": "/styled-system/theming/customize-theme#changing-tokens",
     "hierarchy": { "lv1": "Customize Theme", "lv2": "Changing Tokens" }
+  },
+  {
+    "title": "Setting Responsive Objects to Tokens",
+    "type": "fragment",
+    "slug": "/styled-system/theming/customize-theme#setting-responsive-objects-to-tokens",
+    "hierarchy": {
+      "lv1": "Customize Theme",
+      "lv2": "Setting Responsive Objects to Tokens"
+    }
   },
   {
     "title": "Changing Semantic Tokens",

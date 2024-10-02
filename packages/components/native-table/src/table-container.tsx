@@ -2,7 +2,7 @@ import type { HTMLUIProps, CSSUIObject } from "@yamada-ui/core"
 import { ui, forwardRef } from "@yamada-ui/core"
 import { cx } from "@yamada-ui/utils"
 
-export type TableContainerProps = HTMLUIProps<"div">
+export interface TableContainerProps extends HTMLUIProps {}
 
 export const TableContainer = forwardRef<TableContainerProps, "div">(
   ({ className, overflow, overflowX, ...rest }, ref) => {
@@ -25,3 +25,6 @@ export const TableContainer = forwardRef<TableContainerProps, "div">(
     )
   },
 )
+
+TableContainer.displayName = "TableContainer"
+TableContainer.__ui__ = "TableContainer"

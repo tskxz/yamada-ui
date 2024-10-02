@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from "@storybook/react"
+import { useMemo } from "react"
 import type { MotionVariants } from "@yamada-ui/react"
 import { Center, Motion } from "@yamada-ui/react"
-import { useMemo } from "react"
 
 type Story = StoryFn<typeof Motion>
 
@@ -61,7 +61,6 @@ export const usePropagation: Story = () => {
         animate="visible"
         variants={list}
         w="2xs"
-        h="2xs"
         p="md"
         bg="primary"
         overflow="hidden"

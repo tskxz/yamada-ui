@@ -2,6 +2,7 @@
 title: Menu
 description: "`Menu` is a component that displays a common dropdown menu."
 package_name: "@yamada-ui/menu"
+order: 1
 with_description: true
 tab: Props
 ---
@@ -13,7 +14,7 @@ tab: Props
 <PropsCard
   id="menu-animation"
   name="animation"
-  type='"bottom" | "left" | "right" | "scale" | "top" | "none"'
+  type='"bottom" | "left" | "right" | "top" | "scale" | "none"'
   description={"The animation of the popover."}
   defaultValue={"'scale'"}
 />
@@ -84,7 +85,7 @@ tab: Props
 <PropsCard
   id="menu-duration"
   name="duration"
-  type='number | Partial<Record<"exit" | "enter", number>>'
+  type="number | MotionLifecycleProps<number>"
   description={"The animation duration."}
 />
 
@@ -238,7 +239,7 @@ tab: Props
 <PropsCard
   id="menu-strategy"
   name="strategy"
-  type='"fixed" | "absolute"'
+  type='"absolute" | "fixed"'
   description={"The CSS positioning strategy to use."}
   defaultValue={"'absolute'"}
 />
@@ -379,6 +380,13 @@ tab: Props
   description={"The type of the menu option item."}
 />
 
+<PropsCard
+  id="menuoptionitem-value"
+  name="value"
+  type="string"
+  description={"The value of the menu option item."}
+/>
+
 ### MenuIconProps
 
 ### MenuCommandProps
@@ -390,6 +398,13 @@ tab: Props
   name="label"
   type="string"
   description={"The label of the group."}
+/>
+
+<PropsCard
+  id="menugroup-labelprops"
+  name="labelProps"
+  type='HTMLUIProps<"span">'
+  description={"Props for menu group element."}
 />
 
 ### MenuOptionGroupProps
@@ -405,7 +420,14 @@ tab: Props
   id="menuoptiongroup-label"
   name="label"
   type="string"
-  description={"The label of the option group."}
+  description={"The label of the group."}
+/>
+
+<PropsCard
+  id="menuoptiongroup-labelprops"
+  name="labelProps"
+  type='HTMLUIProps<"span">'
+  description={"Props for menu group element."}
 />
 
 <PropsCard
@@ -439,7 +461,7 @@ tab: Props
 <PropsCard
   id="contextmenu-animation"
   name="animation"
-  type='"bottom" | "left" | "right" | "scale" | "top" | "none"'
+  type='"bottom" | "left" | "right" | "top" | "scale" | "none"'
   description={"The animation of the popover."}
   defaultValue={"'scale'"}
 />
@@ -510,7 +532,7 @@ tab: Props
 <PropsCard
   id="contextmenu-duration"
   name="duration"
-  type='number | Partial<Record<"exit" | "enter", number>>'
+  type="number | MotionLifecycleProps<number>"
   description={"The animation duration."}
 />
 
@@ -664,7 +686,7 @@ tab: Props
 <PropsCard
   id="contextmenu-strategy"
   name="strategy"
-  type='"fixed" | "absolute"'
+  type='"absolute" | "fixed"'
   description={"The CSS positioning strategy to use."}
   defaultValue={"'absolute'"}
 />

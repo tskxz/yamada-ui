@@ -1,10 +1,22 @@
 {
   "Select": {
+    "animation": {
+      "type": "\"bottom\" | \"left\" | \"right\" | \"top\" | \"scale\" | \"none\"",
+      "defaultValue": "'scale'",
+      "required": false,
+      "description": "The animation of the popover."
+    },
     "boundary": {
       "type": "HTMLElement | \"clippingParents\" | \"scrollParent\"",
       "defaultValue": "'clippingParents'",
       "required": false,
       "description": "The boundary area for the popper. Used within the `preventOverflow` modifier."
+    },
+    "closeDelay": {
+      "type": "number",
+      "defaultValue": "200",
+      "required": false,
+      "description": "The number of delay time to close."
     },
     "closeOnBlur": {
       "type": "boolean",
@@ -30,12 +42,12 @@
       "description": "The visual color appearance of the component."
     },
     "containerProps": {
-      "type": "Omit<HTMLUIProps<\"div\">, \"children\">",
+      "type": "Omit<HTMLUIProps, \"children\">",
       "required": false,
       "description": "Props for select container element."
     },
     "contentProps": {
-      "type": "Omit<MotionProps<\"div\">, \"children\">",
+      "type": "Omit<MotionProps, \"children\">",
       "required": false,
       "description": "Props for select content element."
     },
@@ -50,7 +62,7 @@
       "description": "The initial value of the select."
     },
     "duration": {
-      "type": "number | Partial<Record<\"enter\" | \"exit\", number>>",
+      "type": "number | MotionLifecycleProps<number>",
       "required": false,
       "description": "The animation duration."
     },
@@ -191,6 +203,12 @@
       "required": false,
       "description": "Callback fired when the popover opens."
     },
+    "openDelay": {
+      "type": "number",
+      "defaultValue": "200",
+      "required": false,
+      "description": "The number of delay time to open."
+    },
     "optionProps": {
       "type": "Omit<OptionProps, \"children\" | \"value\">",
       "required": false,
@@ -225,11 +243,6 @@
       "required": false,
       "description": "If `true`, will prevent the popper from being cut off and ensure it's visible within the boundary area."
     },
-    "relatedRef": {
-      "type": "RefObject<HTMLElement>",
-      "required": false,
-      "description": "The `ref` of the element related to the popover.\nThis is used during the `onBlur` event."
-    },
     "size": {
       "defaultValue": "md",
       "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
@@ -255,6 +268,12 @@
     }
   },
   "MultiSelect": {
+    "animation": {
+      "type": "\"bottom\" | \"left\" | \"right\" | \"top\" | \"scale\" | \"none\"",
+      "defaultValue": "'scale'",
+      "required": false,
+      "description": "The animation of the popover."
+    },
     "boundary": {
       "type": "HTMLElement | \"clippingParents\" | \"scrollParent\"",
       "defaultValue": "'clippingParents'",
@@ -265,6 +284,12 @@
       "type": "SelectIconProps",
       "required": false,
       "description": "Props for multi select clear icon element."
+    },
+    "closeDelay": {
+      "type": "number",
+      "defaultValue": "200",
+      "required": false,
+      "description": "The number of delay time to close."
     },
     "closeOnBlur": {
       "type": "boolean",
@@ -295,7 +320,7 @@
       "description": "The custom display value to use."
     },
     "containerProps": {
-      "type": "Omit<HTMLUIProps<\"div\">, \"children\">",
+      "type": "Omit<HTMLUIProps, \"children\">",
       "required": false,
       "description": "Props for multi select container element."
     },
@@ -310,7 +335,7 @@
       "description": "The initial value of the select."
     },
     "duration": {
-      "type": "number | Partial<Record<\"enter\" | \"exit\", number>>",
+      "type": "number | MotionLifecycleProps<number>",
       "required": false,
       "description": "The animation duration."
     },
@@ -467,6 +492,12 @@
       "required": false,
       "description": "Callback fired when the popover opens."
     },
+    "openDelay": {
+      "type": "number",
+      "defaultValue": "200",
+      "required": false,
+      "description": "The number of delay time to open."
+    },
     "optionProps": {
       "type": "Omit<OptionProps, \"children\" | \"value\">",
       "required": false,
@@ -494,11 +525,6 @@
       "defaultValue": true,
       "required": false,
       "description": "If `true`, will prevent the popper from being cut off and ensure it's visible within the boundary area."
-    },
-    "relatedRef": {
-      "type": "RefObject<HTMLElement>",
-      "required": false,
-      "description": "The `ref` of the element related to the popover.\nThis is used during the `onBlur` event."
     },
     "separator": {
       "type": "string",
@@ -535,6 +561,11 @@
       "type": "string",
       "required": true,
       "description": "The label of the option group."
+    },
+    "labelProps": {
+      "type": "HTMLUIProps<\"span\">",
+      "required": false,
+      "description": "Props for option group element."
     }
   },
   "Option": {

@@ -2,6 +2,7 @@
 title: CircleProgress
 description: "`CircleProgress` is a component that displays progress in a circular progress bar."
 package_name: "@yamada-ui/progress"
+order: 5
 is_tabs: true
 with_description: true
 tab: Usage
@@ -21,10 +22,10 @@ import { CircleProgress, CircleProgressLabel } from "@yamada-ui/react"
 
 ### Change Size
 
-You can change the `boxSize` (`width`, `height`) by setting a string or number to the `size`.
+To change the size, set a string or number to `boxSize`.
 
 ```tsx
-<CircleProgress value={18} size={32} />
+<CircleProgress value={18} boxSize={32} />
 ```
 
 ### Change Thickness
@@ -39,7 +40,7 @@ To change the thickness of the progress bar, set a string or number to `thicknes
 
 ```tsx
 <CircleProgress
-  size="120px"
+  boxSize="120px"
   min={0}
   max={1000}
   value={444}

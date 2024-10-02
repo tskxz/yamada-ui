@@ -2,7 +2,7 @@ import type { HTMLUIProps, ThemeProps } from "@yamada-ui/core"
 import {
   ui,
   forwardRef,
-  useMultiComponentStyle,
+  useComponentMultiStyle,
   omitThemeProps,
 } from "@yamada-ui/core"
 import {
@@ -25,7 +25,7 @@ export type AvatarGroupProps = HTMLUIProps<"div"> &
   AvatarGroupOptions
 
 export const AvatarGroup = forwardRef<AvatarGroupProps, "div">((props, ref) => {
-  const [styles] = useMultiComponentStyle("Avatar", props)
+  const [styles] = useComponentMultiStyle("Avatar", props)
   const {
     className,
     max,
@@ -99,3 +99,6 @@ export const AvatarGroup = forwardRef<AvatarGroupProps, "div">((props, ref) => {
     </ui.div>
   )
 })
+
+AvatarGroup.displayName = "AvatarGroup"
+AvatarGroup.__ui__ = "AvatarGroup"

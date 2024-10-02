@@ -2,6 +2,7 @@
 title: DatePicker
 description: "`DatePicker` is a component used for users to select a date."
 package_name: "@yamada-ui/calendar"
+order: 1
 label: Updated
 with_description: true
 tab: Props
@@ -40,7 +41,7 @@ tab: Props
 <PropsCard
   id="datepicker-animation"
   name="animation"
-  type='"bottom" | "left" | "right" | "scale" | "top" | "none"'
+  type='"bottom" | "left" | "right" | "top" | "scale" | "none"'
   description={"The animation of the popover."}
   defaultValue={"'scale'"}
 />
@@ -58,7 +59,7 @@ tab: Props
 <PropsCard
   id="datepicker-calendarcolorscheme"
   name="calendarColorScheme"
-  type='(string & {}) | "link" | "blue" | "cyan" | "fuchsia" | "gray" | "green" | "indigo" | "lime" | "orange" | "pink" | "purple" | "red" | "teal" | "violet" | "yellow" | "primary" | "secondary" | ... 11 more ... | "sky"'
+  type='"link" | (string & {}) | "whiteAlpha" | "blackAlpha" | "gray" | "neutral" | "red" | "rose" | "pink" | "flashy" | "orange" | "amber" | "yellow" | "lime" | "green" | "emerald" | "teal" | ... 12 more ... | "danger"'
   description={"ColorScheme for the calendar component."}
 />
 
@@ -79,7 +80,7 @@ tab: Props
 <PropsCard
   id="datepicker-calendarvariant"
   name="calendarVariant"
-  type='UIValue<(string & {}) | "solid" | "unstyled" | "subtle">'
+  type='UIValue<(string & {}) | "solid" | "subtle" | "unstyled">'
   description={"Variant for the calendar component."}
 />
 
@@ -88,6 +89,14 @@ tab: Props
   name="clearIconProps"
   type="DatePickerIconProps"
   description={"Props for date picker clear icon element."}
+/>
+
+<PropsCard
+  id="datepicker-closedelay"
+  name="closeDelay"
+  type="number"
+  description={"The number of delay time to close."}
+  defaultValue={"200"}
 />
 
 <PropsCard
@@ -128,14 +137,14 @@ tab: Props
 <PropsCard
   id="datepicker-containerprops"
   name="containerProps"
-  type='Omit<HTMLUIProps<"div">, "children">'
+  type='Omit<HTMLUIProps, "children">'
   description={"Props for date picker container element."}
 />
 
 <PropsCard
   id="datepicker-contentprops"
   name="contentProps"
-  type='Omit<MotionProps<"div">, "children">'
+  type='Omit<MotionProps, "children">'
   description={"Props for month picker container element."}
 />
 
@@ -168,7 +177,7 @@ tab: Props
 <PropsCard
   id="datepicker-defaulttype"
   name="defaultType"
-  type='"date" | "month" | "year"'
+  type='"month" | "year" | "date"'
   description={"The initial type of the calendar."}
 />
 
@@ -190,7 +199,7 @@ tab: Props
 <PropsCard
   id="datepicker-duration"
   name="duration"
-  type='number | Partial<Record<"exit" | "enter", number>>'
+  type="number | MotionLifecycleProps<number>"
   description={"The animation duration."}
 />
 
@@ -413,6 +422,13 @@ tab: Props
 />
 
 <PropsCard
+  id="datepicker-minselectvalues"
+  name="minSelectValues"
+  type="number"
+  description={"The minimum selectable value."}
+/>
+
+<PropsCard
   id="datepicker-modifiers"
   name="modifiers"
   type="Partial<Modifier<string, any>>[]"
@@ -467,7 +483,7 @@ tab: Props
   id="datepicker-onchangetype"
   name="onChangeType"
   type='(
-  type: "date" | "month" | "year",
+  type: "month" | "year" | "date",
   year?: number | undefined,
   month?: number | undefined,
 ) => void'
@@ -486,6 +502,14 @@ tab: Props
   name="onOpen"
   type="() => void"
   description={"Callback fired when the popover opens."}
+/>
+
+<PropsCard
+  id="datepicker-opendelay"
+  name="openDelay"
+  type="number"
+  description={"The number of delay time to open."}
+  defaultValue={"200"}
 />
 
 <PropsCard
@@ -538,15 +562,6 @@ tab: Props
 />
 
 <PropsCard
-  id="datepicker-relatedref"
-  name="relatedRef"
-  type="RefObject<HTMLElement>"
-  description={
-    "The `ref` of the element related to the popover.\nThis is used during the `onBlur` event."
-  }
-/>
-
-<PropsCard
   id="datepicker-size"
   name="size"
   type='"xs" | "sm" | "md" | "lg"'
@@ -557,7 +572,7 @@ tab: Props
 <PropsCard
   id="datepicker-strategy"
   name="strategy"
-  type='"fixed" | "absolute"'
+  type='"absolute" | "fixed"'
   description={"The CSS positioning strategy to use."}
   defaultValue={"'absolute'"}
 />
@@ -573,7 +588,7 @@ tab: Props
 <PropsCard
   id="datepicker-type"
   name="type"
-  type='"date" | "month" | "year"'
+  type='"month" | "year" | "date"'
   description={"The type of the calendar."}
 />
 

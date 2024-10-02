@@ -1,7 +1,7 @@
 {
   "Tabs": {
     "align": {
-      "type": "\"center\" | \"start\" | \"end\"",
+      "type": "\"start\" | \"end\" | \"center\"",
       "required": false,
       "description": "The alignment of the tabs."
     },
@@ -86,7 +86,49 @@
     }
   },
   "TabList": {},
-  "Tab": {},
+  "Tab": {
+    "clickOnEnter": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "Whether or not trigger click on pressing `Enter`."
+    },
+    "clickOnSpace": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "Whether or not trigger click on pressing `Space`."
+    },
+    "disableTouchBehavior": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "Disable the touch device behavior."
+    },
+    "focusOnClick": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "Whether or not to focus the element when it is clicked.\nIf `true`, the element will receive focus upon click."
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the element will be disabled. It will set the `disabled` HTML attribute."
+    },
+    "isFocusable": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true` and isDisabled, the element will have only `aria-disabled` set to `true`."
+    },
+    "ref": {
+      "type": "type ONLY_FOR_FORMAT =\n  | ((instance: HTMLElement | null) => void)\n  | RefObject<HTMLElement>",
+      "required": false,
+      "description": "The ref for the element."
+    }
+  },
   "TabPanels": {},
   "TabPanel": {}
 }

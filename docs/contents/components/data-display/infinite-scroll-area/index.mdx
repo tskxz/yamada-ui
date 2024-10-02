@@ -2,6 +2,7 @@
 title: InfiniteScrollArea
 description: "`InfiniteScrollArea` is a component that provides infinite scrolling functionality. This component offers a smooth scrolling experience by automatically loading and displaying the next dataset when the end of the component is reached."
 package_name: "@yamada-ui/infinite-scroll-area"
+order: 23
 is_tabs: true
 with_description: true
 tab: Usage
@@ -27,7 +28,7 @@ return (
 
       if (index >= 5) finish()
     }}
-    loading={<Loading size="2xl" />}
+    loading={<Loading fontSize="2xl" />}
   >
     {Array(count)
       .fill(0)
@@ -85,7 +86,7 @@ return (
 
           if (index >= 5) finish()
         }}
-        loading={<Loading size="2xl" />}
+        loading={<Loading fontSize="2xl" />}
       >
         {Array(count)
           .fill(0)
@@ -130,7 +131,7 @@ return (
 
       if (index >= 5) finish()
     }}
-    loading={<Loading size="2xl" />}
+    loading={<Loading fontSize="2xl" />}
     rootMargin="300px 0px 0px 0px"
   >
     {Array(count)
@@ -172,7 +173,7 @@ return (
 
       if (index >= 5) finish()
     }}
-    loading={<Loading size="2xl" />}
+    loading={<Loading fontSize="2xl" />}
     threshold={1}
   >
     {Array(count)
@@ -220,7 +221,7 @@ return (
 
       if (index >= 5) finish()
     }}
-    loading={<Loading size="2xl" />}
+    loading={<Loading fontSize="2xl" />}
   >
     {Array(count)
       .fill(0)
@@ -261,7 +262,7 @@ return (
 
       if (index >= 5) finish()
     }}
-    loading={<Loading size="2xl" />}
+    loading={<Loading fontSize="2xl" />}
     startIndex={3}
   >
     {Array(count)
@@ -303,7 +304,7 @@ return (
 
       if (index >= 5) finish()
     }}
-    loading={<Loading size="2xl" />}
+    loading={<Loading fontSize="2xl" />}
   >
     {Array(count)
       .fill(0)
@@ -343,7 +344,7 @@ return (
 
         if (index >= 5) finish()
       }}
-      loading={<Loading size="2xl" />}
+      loading={<Loading fontSize="2xl" />}
       rootRef={rootRef}
       isReverse
     >
@@ -394,7 +395,7 @@ return (
 
         if (index >= 5) finish()
       }}
-      loading={<Loading size="2xl" />}
+      loading={<Loading fontSize="2xl" />}
       isDisabled={isDisabled}
     >
       {Array(count)
@@ -455,7 +456,7 @@ return (
 
         if (index >= 5) finish()
       }}
-      loading={<Loading size="2xl" />}
+      loading={<Loading fontSize="2xl" />}
       resetRef={resetRef}
     >
       {Array(count)
@@ -500,7 +501,7 @@ return (
 
       if (index >= 1) finish()
     }}
-    loading={<Loading size="2xl" />}
+    loading={<Loading fontSize="2xl" />}
     finish={<>Finished</>}
   >
     {Array(count)
@@ -544,7 +545,7 @@ return (
 
       if (index >= 5) finish()
     }}
-    loading={<Loading size="2xl" />}
+    loading={<Loading fontSize="2xl" />}
     triggerProps={{ bg: "primary.50", p: "md", rounded: "md" }}
   >
     {Array(count)

@@ -111,6 +111,11 @@
     }
   },
   "CheckboxIcon": {
+    "as": {
+      "type": "\"symbol\" | \"object\" | \"clipPath\" | \"text\" | \"g\" | \"marker\" | \"mask\" | \"p\" | \"filter\" | \"label\" | \"form\" | \"style\" | \"title\" | \"animate\" | \"svg\" | \"a\" | \"abbr\" | \"address\" | \"area\" | ... 149 more ... | \"view\"",
+      "required": false,
+      "description": "The HTML element to render."
+    },
     "isChecked": {
       "type": "boolean",
       "defaultValue": false,
@@ -229,22 +234,27 @@
   },
   "CheckboxGroup": {
     "align": {
-      "type": "(string & {}) | \"center\" | \"end\" | \"initial\" | \"inherit\" | \"-moz-initial\" | \"revert\" | \"revert-layer\" | \"unset\" | \"normal\" | \"start\" | \"baseline\" | \"stretch\" | \"flex-end\" | \"flex-start\" | ... 6 more ... | ((theme: StyledTheme) => UIValue<...>)",
+      "type": "UIValue<AlignItems>",
       "required": false,
       "description": "The CSS `align-items` property."
     },
     "basis": {
-      "type": "number | (string & {}) | \"content\" | \"px\" | \"max\" | \"min\" | \"initial\" | \"inherit\" | \"auto\" | \"-moz-initial\" | \"revert\" | \"revert-layer\" | \"unset\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | ... 72 more ... | ((theme: StyledTheme) => UIValue<...>)",
+      "type": "UIValue<number | \"content\" | \"px\" | \"initial\" | \"inherit\" | (string & {}) | \"auto\" | \"max\" | \"min\" | \"1\" | \"2\" | \"3\" | \"-moz-initial\" | \"revert\" | \"revert-layer\" | \"unset\" | \"sm\" | \"md\" | ... 67 more ... | \"9xl\">",
       "required": false,
       "description": "The CSS `flex-basis` property."
     },
+    "defaultValue": {
+      "type": "Y[]",
+      "required": false,
+      "description": "The initial value of the checkbox group."
+    },
     "direction": {
-      "type": "\"initial\" | \"inherit\" | \"row\" | \"-moz-initial\" | \"revert\" | \"revert-layer\" | \"unset\" | \"column\" | \"column-reverse\" | \"row-reverse\" | Partial<Record<(string & {}) | \"base\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\", FlexDirection>> | ColorModeArray<...> | Partial<...> | ColorModeArray<...> | ((theme: StyledTheme) => UIValue...",
+      "type": "UIValue<FlexDirection>",
       "required": false,
       "description": "The CSS `flex-direction` property."
     },
     "grow": {
-      "type": "(string & {}) | \"initial\" | \"inherit\" | \"-moz-initial\" | \"revert\" | \"revert-layer\" | \"unset\" | (number & {}) | Partial<Record<(string & {}) | \"base\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\", FlexGrow>> | ColorModeArray<...> | Partial<...> | ColorModeArray<...> | ((theme: StyledTheme) => UIValue<...>)",
+      "type": "UIValue<FlexGrow>",
       "required": false,
       "description": "The CSS `flex-grow` property."
     },
@@ -285,7 +295,7 @@
       "description": "If provided, generate checkboxes based on items."
     },
     "justify": {
-      "type": "(string & {}) | \"left\" | \"right\" | \"center\" | \"end\" | \"initial\" | \"inherit\" | \"-moz-initial\" | \"revert\" | \"revert-layer\" | \"unset\" | \"normal\" | \"start\" | \"space-around\" | \"space-between\" | ... 8 more ... | ((theme: StyledTheme) => UIValue<...>)",
+      "type": "UIValue<JustifyContent>",
       "required": false,
       "description": "The CSS `justify-content` property."
     },
@@ -295,7 +305,7 @@
       "description": "The callback fired when any children checkbox is checked or unchecked."
     },
     "shrink": {
-      "type": "(string & {}) | \"initial\" | \"inherit\" | \"-moz-initial\" | \"revert\" | \"revert-layer\" | \"unset\" | (number & {}) | Partial<Record<(string & {}) | \"base\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\", FlexShrink>> | ColorModeArray<...> | Partial<...> | ColorModeArray<...> | ((theme: StyledTheme) => UIValue<...>)",
+      "type": "UIValue<FlexShrink>",
       "required": false,
       "description": "The CSS `flex-shrink` property."
     },
@@ -305,7 +315,7 @@
       "description": "The value of the checkbox group."
     },
     "wrap": {
-      "type": "\"initial\" | \"inherit\" | \"-moz-initial\" | \"revert\" | \"revert-layer\" | \"unset\" | \"wrap\" | \"nowrap\" | \"wrap-reverse\" | Partial<Record<(string & {}) | \"base\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\", FlexWrap>> | ColorModeArray<...> | Partial<...> | ColorModeArray<...> | ((theme: StyledTheme) => UIValue<...>)",
+      "type": "UIValue<FlexWrap>",
       "required": false,
       "description": "The CSS `flex-wrap` property."
     }

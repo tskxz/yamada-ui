@@ -1,26 +1,28 @@
-import type { CSSUIObject, HTMLUIProps, ThemeProps } from "@yamada-ui/core"
+import type { CSSUIObject, FC, HTMLUIProps, ThemeProps } from "@yamada-ui/core"
 import {
   ui,
   forwardRef,
-  useMultiComponentStyle,
+  useComponentMultiStyle,
   omitThemeProps,
 } from "@yamada-ui/core"
 import type { ImageProps, UseImageProps } from "@yamada-ui/image"
 import { useImage } from "@yamada-ui/image"
 import { createContext, cx, dataAttr, handlerAll } from "@yamada-ui/utils"
-import type { FC, HTMLAttributeReferrerPolicy, ReactElement } from "react"
+import type { HTMLAttributeReferrerPolicy, ReactElement } from "react"
 import { cloneElement, useState } from "react"
 import { AvatarIcon } from "./avatar-icon"
 import { AvatarName } from "./avatar-name"
 
-type AvatarContext = Record<string, CSSUIObject>
+interface AvatarContext {
+  [key: string]: CSSUIObject
+}
 
 export const [AvatarProvider, useAvatarContext] = createContext<AvatarContext>({
   strict: false,
   name: "AvatarContext",
 })
 
-type AvatarOptions = {
+interface AvatarOptions {
   /**
    * The name of the person in the avatar.
    *
@@ -75,7 +77,7 @@ export type AvatarProps = HTMLUIProps<"span"> &
  * @see Docs https://yamada-ui.com/components/media-and-icons/avatar
  */
 export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
-  const [styles, mergedProps] = useMultiComponentStyle("Avatar", props)
+  const [styles, mergedProps] = useComponentMultiStyle("Avatar", props)
   const {
     className,
     src,
@@ -143,6 +145,9 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
   )
 })
 
+Avatar.displayName = "Avatar"
+Avatar.__ui__ = "Avatar"
+
 type AvatarImageProps = ImageProps &
   Pick<AvatarProps, "name" | "format" | "icon" | "ignoreFallback">
 
@@ -195,3 +200,6 @@ const AvatarImage: FC<AvatarImageProps> = ({
     />
   )
 }
+
+AvatarImage.displayName = "AvatarImage"
+AvatarImage.__ui__ = "AvatarImage"

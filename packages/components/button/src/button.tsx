@@ -1,4 +1,4 @@
-import type { HTMLUIProps, ThemeProps, CSSUIObject } from "@yamada-ui/core"
+import type { HTMLUIProps, ThemeProps, CSSUIObject, FC } from "@yamada-ui/core"
 import {
   ui,
   forwardRef,
@@ -9,11 +9,11 @@ import type { LoadingProps } from "@yamada-ui/loading"
 import { Loading as LoadingIcon } from "@yamada-ui/loading"
 import { Ripple, useRipple } from "@yamada-ui/ripple"
 import { cx, merge, dataAttr, mergeRefs } from "@yamada-ui/utils"
-import type { ElementType, FC, ReactElement } from "react"
+import type { ElementType, ReactElement } from "react"
 import { useCallback, useMemo, useRef } from "react"
 import { useButtonGroup } from "./button-group"
 
-type ButtonOptions = {
+interface ButtonOptions {
   /**
    * The type of button. Accepts `button`, `reset`, or `submit`.
    *
@@ -74,9 +74,10 @@ type ButtonOptions = {
   disableRipple?: boolean
 }
 
-export type ButtonProps = HTMLUIProps<"button"> &
-  ThemeProps<"Button"> &
-  ButtonOptions
+export interface ButtonProps
+  extends HTMLUIProps<"button">,
+    ThemeProps<"Button">,
+    ButtonOptions {}
 
 /**
  * `Button` is an interactive component that allows users to perform actions such as submitting forms and toggling modals.
@@ -193,6 +194,9 @@ export const Button = forwardRef<ButtonProps, "button">(
   },
 )
 
+Button.displayName = "Button"
+Button.__ui__ = "Button"
+
 const Loading: FC<
   Pick<ButtonProps, "className" | "loadingIcon" | "loadingText">
 > = ({ className, loadingIcon, loadingText }) => {
@@ -222,6 +226,9 @@ const Loading: FC<
   )
 }
 
+Loading.displayName = "Loading"
+Loading.__ui__ = "Loading"
+
 const Content: FC<Pick<ButtonProps, "leftIcon" | "rightIcon" | "children">> = ({
   leftIcon,
   rightIcon,
@@ -235,6 +242,9 @@ const Content: FC<Pick<ButtonProps, "leftIcon" | "rightIcon" | "children">> = ({
     </>
   )
 }
+
+Content.displayName = "Content"
+Content.__ui__ = "Content"
 
 const Icon: FC<HTMLUIProps<"span">> = ({ children, className, ...rest }) => {
   return (
@@ -250,6 +260,9 @@ const Icon: FC<HTMLUIProps<"span">> = ({ children, className, ...rest }) => {
     </ui.span>
   )
 }
+
+Icon.displayName = "Icon"
+Icon.__ui__ = "Icon"
 
 export const useButtonType = (value?: ElementType) => {
   const isButton = useRef(!value)

@@ -1,13 +1,17 @@
-import type { CSSUIObject, HTMLUIProps } from "@yamada-ui/core"
+import type {
+  CSSUIObject,
+  FunctionComponent,
+  HTMLUIProps,
+} from "@yamada-ui/core"
 import { ui, forwardRef } from "@yamada-ui/core"
 import { ChevronIcon, CloseIcon } from "@yamada-ui/icon"
 import { useClickable } from "@yamada-ui/use-clickable"
 import { cx, getValidChildren, isValidElement } from "@yamada-ui/utils"
-import type { FC, HTMLAttributes } from "react"
+import type { HTMLAttributes } from "react"
 import { cloneElement, useRef } from "react"
 import { useSelectContext } from "./use-select"
 
-export type SelectIconProps = HTMLUIProps<"div">
+export interface SelectIconProps extends HTMLUIProps {}
 
 export const SelectIcon = forwardRef<SelectIconProps, "div">(
   ({ className, children, __css, ...rest }, ref) => {
@@ -53,9 +57,14 @@ export const SelectIcon = forwardRef<SelectIconProps, "div">(
   },
 )
 
-export type SelectClearIconProps = SelectIconProps & { disabled?: boolean }
+SelectIcon.displayName = "SelectIcon"
+SelectIcon.__ui__ = "SelectIcon"
 
-export const SelectClearIcon: FC<SelectClearIconProps> = ({
+export interface SelectClearIconProps extends SelectIconProps {
+  disabled?: boolean
+}
+
+export const SelectClearIcon: FunctionComponent<SelectClearIconProps> = ({
   className,
   children,
   ...props
@@ -82,3 +91,6 @@ export const SelectClearIcon: FC<SelectClearIconProps> = ({
     </SelectIcon>
   )
 }
+
+SelectClearIcon.displayName = "SelectClearIcon"
+SelectClearIcon.__ui__ = "SelectClearIcon"

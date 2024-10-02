@@ -3,7 +3,7 @@ import { ui, forwardRef } from "@yamada-ui/core"
 import { cx } from "@yamada-ui/utils"
 import { useTableStyles } from "./native-table"
 
-export type TableHeadProps = HTMLUIProps<"thead">
+export interface TableHeadProps extends HTMLUIProps<"thead"> {}
 
 export const Thead = forwardRef<TableHeadProps, "thead">(
   ({ className, ...rest }, ref) => {
@@ -21,3 +21,6 @@ export const Thead = forwardRef<TableHeadProps, "thead">(
     )
   },
 )
+
+Thead.displayName = "Thead"
+Thead.__ui__ = "Thead"

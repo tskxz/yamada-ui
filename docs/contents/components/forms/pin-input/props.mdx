@@ -4,6 +4,7 @@ description: >-
   `PinInput` is a component used to capture pin codes or OTP (One-Time Password)
   inputs.
 package_name: "@yamada-ui/pin-input"
+order: 1
 with_description: true
 tab: Props
 ---
@@ -20,16 +21,23 @@ tab: Props
 />
 
 <PropsCard
+  id="pininput-defaultvalue"
+  name="defaultValue"
+  type="string"
+  description={"The initial value of the pin input."}
+/>
+
+<PropsCard
   id="pininput-errorbordercolor"
   name="errorBorderColor"
-  type='"border" | "link" | BorderColor | "current" | "focus" | "whiteAlpha.50" | "whiteAlpha.100" | "whiteAlpha.200" | "whiteAlpha.300" | "whiteAlpha.400" | "whiteAlpha.500" | ... 319 more ... | ColorModeArray<...>'
+  type='"border" | BorderColor | "current" | "focus" | "whiteAlpha.50" | "whiteAlpha.100" | "whiteAlpha.200" | "whiteAlpha.300" | "whiteAlpha.400" | "whiteAlpha.500" | ... 321 more ... | [...]'
   description={"The border color when the input is invalid."}
 />
 
 <PropsCard
   id="pininput-focusbordercolor"
   name="focusBorderColor"
-  type='"border" | "link" | BorderColor | "current" | "focus" | "whiteAlpha.50" | "whiteAlpha.100" | "whiteAlpha.200" | "whiteAlpha.300" | "whiteAlpha.400" | "whiteAlpha.500" | ... 319 more ... | ColorModeArray<...>'
+  type='"border" | BorderColor | "current" | "focus" | "whiteAlpha.50" | "whiteAlpha.100" | "whiteAlpha.200" | "whiteAlpha.300" | "whiteAlpha.400" | "whiteAlpha.500" | ... 321 more ... | [...]'
   description={"The border color when the input is focused."}
 />
 

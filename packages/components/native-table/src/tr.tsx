@@ -3,7 +3,7 @@ import { ui, forwardRef } from "@yamada-ui/core"
 import { cx } from "@yamada-ui/utils"
 import { useTableStyles } from "./native-table"
 
-export type TrProps = HTMLUIProps<"tr">
+export interface TrProps extends HTMLUIProps<"tr"> {}
 
 export const Tr = forwardRef<TrProps, "tr">(({ className, ...rest }, ref) => {
   const styles = useTableStyles()
@@ -19,3 +19,6 @@ export const Tr = forwardRef<TrProps, "tr">(({ className, ...rest }, ref) => {
     />
   )
 })
+
+Tr.displayName = "Tr"
+Tr.__ui__ = "Tr"

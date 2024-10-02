@@ -1,13 +1,13 @@
-import type { CSSUIObject, HTMLUIProps } from "@yamada-ui/core"
+import type { CSSUIObject, FC, HTMLUIProps } from "@yamada-ui/core"
 import { ui, forwardRef } from "@yamada-ui/core"
 import { ChevronIcon, CloseIcon } from "@yamada-ui/icon"
 import { useClickable } from "@yamada-ui/use-clickable"
 import { cx, getValidChildren, isValidElement } from "@yamada-ui/utils"
-import type { FC, HTMLAttributes } from "react"
+import type { HTMLAttributes } from "react"
 import { cloneElement, useRef } from "react"
-import { useAutocompleteContext } from "./use-autocomplete"
+import { useAutocompleteContext } from "./autocomplete-context"
 
-export type AutocompleteIconProps = HTMLUIProps<"div">
+export interface AutocompleteIconProps extends HTMLUIProps {}
 
 export const AutocompleteIcon = forwardRef<AutocompleteIconProps, "div">(
   ({ className, children, __css, ...rest }, ref) => {
@@ -53,7 +53,10 @@ export const AutocompleteIcon = forwardRef<AutocompleteIconProps, "div">(
   },
 )
 
-export type AutocompleteClearIconProps = AutocompleteIconProps & {
+AutocompleteIcon.displayName = "AutocompleteIcon"
+AutocompleteIcon.__ui__ = "AutocompleteIcon"
+
+export interface AutocompleteClearIconProps extends AutocompleteIconProps {
   disabled?: boolean
 }
 
@@ -85,7 +88,10 @@ export const AutocompleteClearIcon: FC<AutocompleteClearIconProps> = ({
   )
 }
 
-export type AutocompleteItemIconProps = HTMLUIProps<"span">
+AutocompleteClearIcon.displayName = "AutocompleteClearIcon"
+AutocompleteClearIcon.__ui__ = "AutocompleteClearIcon"
+
+export interface AutocompleteItemIconProps extends HTMLUIProps<"span"> {}
 
 export const AutocompleteItemIcon = forwardRef<
   AutocompleteItemIconProps,
@@ -111,3 +117,6 @@ export const AutocompleteItemIcon = forwardRef<
     />
   )
 })
+
+AutocompleteItemIcon.displayName = "AutocompleteItemIcon"
+AutocompleteItemIcon.__ui__ = "AutocompleteItemIcon"

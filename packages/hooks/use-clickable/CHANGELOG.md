@@ -1,5 +1,31 @@
 # @yamada-ui/use-clickable
 
+## 1.2.9
+
+### Patch Changes
+
+- Updated dependencies [[`37e34b4`](https://github.com/yamada-ui/yamada-ui/commit/37e34b44b5763882ae84a8ea34065dde8291999a), [`e49833f`](https://github.com/yamada-ui/yamada-ui/commit/e49833fc097549a46424e8d4a72badb0194f7ad2)]:
+  - @yamada-ui/utils@1.5.2
+  - @yamada-ui/use-event-listener@1.0.21
+
+## 1.2.8
+
+### Patch Changes
+
+- Updated dependencies [[`db1c087`](https://github.com/yamada-ui/yamada-ui/commit/db1c087516c376ff3c19ff0916ff9d20a07d61c3)]:
+  - @yamada-ui/utils@1.5.1
+  - @yamada-ui/use-event-listener@1.0.20
+
+## 1.2.7
+
+### Patch Changes
+
+- [#2676](https://github.com/yamada-ui/yamada-ui/pull/2676) [`122f789`](https://github.com/yamada-ui/yamada-ui/commit/122f789d60f947fea53dfff1259fd540268aa66a) Thanks [@hirotomoyamada](https://github.com/hirotomoyamada)! - Updated types.
+
+- Updated dependencies [[`1ca7345`](https://github.com/yamada-ui/yamada-ui/commit/1ca734576b8e32920130ebb52b83d0da15670732), [`5948777`](https://github.com/yamada-ui/yamada-ui/commit/594877728ebf14dde87d7280b11c92e28a2bde74)]:
+  - @yamada-ui/utils@1.5.0
+  - @yamada-ui/use-event-listener@1.0.19
+
 ## 1.2.6
 
 ### Patch Changes
