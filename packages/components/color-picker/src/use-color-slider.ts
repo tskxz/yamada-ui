@@ -371,15 +371,15 @@ export const useColorSlider = ({
         ref: mergeRefs(ref, thumbRef),
         "aria-valuemax": max,
         "aria-valuemin": min,
-        "aria-valuetext": ariaValueText,
         "aria-valuenow": value,
+        "aria-valuetext": ariaValueText,
         "data-active": dataAttr(isDragging && focusThumbOnChange),
         role: "slider",
         tabIndex: isInteractive && focusThumbOnChange ? 0 : undefined,
         onBlur: handlerAll(props.onBlur, onBlurProp),
         onFocus: handlerAll(props.onFocus, onFocusProp),
-        onKeyDown: handlerAll(props.onKeyDown, onKeyDown),
         style,
+        onKeyDown: handlerAll(props.onKeyDown, onKeyDown),
       }
     },
     [
