@@ -379,6 +379,7 @@ export const useColorSlider = ({
         onBlur: handlerAll(props.onBlur, onBlurProp),
         onFocus: handlerAll(props.onFocus, onFocusProp),
         onKeyDown: handlerAll(props.onKeyDown, onKeyDown),
+        style,
       }
     },
     [
