@@ -1,4 +1,5 @@
 import type { HTMLUIProps, ThemeProps } from "@yamada-ui/core"
+import type { InputProps } from "@yamada-ui/input"
 import type { MotionProps } from "@yamada-ui/motion"
 import type { PortalProps } from "@yamada-ui/portal"
 import type { CountrySelectFieldProps } from "./country-picker"
@@ -21,6 +22,7 @@ interface PhoneInputOptions {
   containerProps?: Omit<HTMLUIProps, "children">
   contentProps?: Omit<MotionProps, "children">
   fieldProps?: Omit<CountrySelectFieldProps, "children">
+  inputProps?: Omit<InputProps, "children">
   listProps?: Omit<CountryPickerListProps, "children">
   portalProps?: Omit<PortalProps, "children">
 }
@@ -38,8 +40,14 @@ export interface PhoneInputProps
 export const PhoneInput = forwardRef<PhoneInputProps, "div">((props, ref) => {
   const [styles, mergedProps] = useComponentMultiStyle("PhoneInput", props)
 
-  const { containerProps, contentProps, fieldProps, listProps, portalProps } =
-    omitThemeProps(mergedProps)
+  const {
+    containerProps,
+    contentProps,
+    fieldProps,
+    inputProps,
+    listProps,
+    portalProps,
+  } = omitThemeProps(mergedProps)
 
   const {
     containerRef,
@@ -100,7 +108,7 @@ export const PhoneInput = forwardRef<PhoneInputProps, "div">((props, ref) => {
           />
           <InputGroup>
             <InputLeftAddon>{dialCode}</InputLeftAddon>
-            <Input type="tel" htmlSize={24} width="auto" />
+            <Input type="tel" htmlSize={24} width="auto" {...inputProps} />
           </InputGroup>
         </ui.div>
       </PhoneInputProvider>
