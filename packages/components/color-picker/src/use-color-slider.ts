@@ -369,6 +369,7 @@ export const useColorSlider = ({
         "aria-readonly": ariaReadonly,
         ...props,
         ref: mergeRefs(ref, thumbRef),
+        style,
         "aria-valuemax": max,
         "aria-valuemin": min,
         "aria-valuenow": value,
@@ -378,7 +379,6 @@ export const useColorSlider = ({
         tabIndex: isInteractive && focusThumbOnChange ? 0 : undefined,
         onBlur: handlerAll(props.onBlur, onBlurProp),
         onFocus: handlerAll(props.onFocus, onFocusProp),
-        style,
         onKeyDown: handlerAll(props.onKeyDown, onKeyDown),
       }
     },
