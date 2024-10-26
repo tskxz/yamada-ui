@@ -712,7 +712,6 @@ export const useSelect = <T extends MaybeValue = string>(
         "aria-activedescendant": descendants.value(focusedIndex)?.node.id,
         "aria-controls": listRef.current?.id,
         "aria-expanded": isOpen,
-        "aria-haspopup": "listbox",
         "data-active": dataAttr(isOpen),
         "data-placeholder": dataAttr(
           !isMulti ? label === undefined : !label?.length,
