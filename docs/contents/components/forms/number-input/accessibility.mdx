@@ -1,0 +1,27 @@
+---
+title: NumberInput
+description: "`NumberInput` is a component used to obtain numeric input from the user."
+package_name: "@yamada-ui/number-input"
+order: 3
+with_description: true
+tab: Accessibility
+---
+
+## Keyboard Navigation
+
+| Key         | Description                                                | State |
+| ----------- | ---------------------------------------------------------- | ----- |
+| `ArrowUp`   | Increases the value. The increment value is set by `step`. | -     |
+| `ArrowDown` | Decreases the value. The decrement value is set by `step`. | -     |
+| `Home`      | Sets the value to the minimum value set by `min`.          | -     |
+| `End`       | Sets the value to the maximum value set by `max`.          | -     |
+
+## ARIA Roles and Attributes
+
+| Component     | Roles and Attributes | Usage                                                          |
+| ------------- | -------------------- | -------------------------------------------------------------- |
+| `NumberInput` | `role="spinbutton"`  | Indicates that it is a spin button.                            |
+|               | `aria-valuemin`      | Communicates the minimum value to assistive technologies.      |
+|               | `aria-valuemax`      | Communicates the maximum value to assistive technologies.      |
+|               | `aria-valuenow`      | Communicates the current value to assistive technologies.      |
+|               | `aria-valuetext`     | Communicates a human-readable value to assistive technologies. |
