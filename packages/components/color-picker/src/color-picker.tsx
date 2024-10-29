@@ -11,6 +11,7 @@ import {
   useComponentMultiStyle,
 } from "@yamada-ui/core"
 import { Popover, PopoverContent, PopoverTrigger } from "@yamada-ui/popover"
+import { usePopover } from "@yamada-ui/popover/src/popover"
 import { Portal } from "@yamada-ui/portal"
 import {
   cx,
@@ -230,6 +231,7 @@ const ColorPickerField = forwardRef<ColorPickerFieldProps, "input">(
   ({ className, h, minH, inputProps, ...rest }, ref) => {
     const { styles } = useColorPickerContext()
     const { ref: inputRef, ...computedInputProps } = inputProps ?? {}
+    const { id: popoverId } = usePopover()
 
     const css: CSSUIObject = {
       alignItems: "center",
@@ -251,7 +253,9 @@ const ColorPickerField = forwardRef<ColorPickerFieldProps, "input">(
           <ui.input
             ref={mergeRefs(ref, inputRef)}
             className="ui-color-picker-picker__field__input"
+            aria-controls={popoverId}
             display="inline-block"
+            role="combobox"
             w="100%"
             {...computedInputProps}
           />
