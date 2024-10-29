@@ -255,7 +255,7 @@ const ColorPickerField = forwardRef<ColorPickerFieldProps, "input">(
             className="ui-color-picker-picker__field__input"
             aria-controls={popoverId}
             display="inline-block"
-            role="combobox"
+            role="textbox"
             w="100%"
             {...computedInputProps}
           />
