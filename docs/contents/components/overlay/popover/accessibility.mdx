@@ -1,0 +1,35 @@
+---
+title: Popover
+description: "`Popover` is a small floating window that displays information or actions related to a specific element. It is triggered by buttons or links and appears when the user clicks or hovers over them."
+package-name: "@yamada-ui/popover"
+order: 3
+with_description: true
+tab: アクセシビリティ
+---
+
+`Popover` follows the [WAI-ARIA - Dialog (Modal) Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) for accessibility.
+
+## Keyboard Navigation
+
+When the `Popover` opens, focus is trapped within it. That is, you cannot focus on elements outside the popover unless the popover is closed.
+
+| Key             | Description                                                                                                                                                        | State                                 |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- |
+| `Tab`           | Focuses the next element within the popover that is not disabled. If it's the last element, focuses the first element within the popover that is not disabled.     | `isOpen={true}`                       |
+| `Shift` + `Tab` | Focuses the previous element within the popover that is not disabled. If it's the first element, focuses the last element within the popover that is not disabled. | `isOpen={true}`                       |
+| `Escape`        | Closes the popover.                                                                                                                                                | `isOpen={true}` + `closeOnEsc={true}` |
+
+## ARIA Roles and Attributes
+
+| Component            | Roles and Attributes         | Usage                                                                        |
+| :------------------- | :--------------------------- | :--------------------------------------------------------------------------- |
+| `Popover`            | `role="dialog"`              | Indicates that it is a dialog.                                               |
+|                      | `aria-labelledby`            | Sets the `id` of the associated `PopoverHeader`.                             |
+|                      | `aria-describedby`           | Sets the `id` of the associated `PopoverBody`.                               |
+|                      | `aria-hidden="true"`         | Excludes the element from the accessibility tree.                            |
+|                      | `aria-expanded`              | Sets to "true" when `Popover` is expanded, and "false" when it is collapsed. |
+|                      | `aria-controls`              | Set to id when `Popover` is expanded, and undefined when it is collapsed.    |
+| `PopoverCloseButton` | `aria-label="Close popover"` | Sets `"Close popover"` as the label.                                         |
+|                      | `aria-controls`              | Sets the `id` of `Popover`.                                                  |
+| `PopoverHeader`      | `id`                         | Used to associate with `Popover`.                                            |
+| `PopoverBody`        | `id`                         | Used to associate with `Popover`.                                            |

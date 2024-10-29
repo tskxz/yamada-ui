@@ -1,0 +1,35 @@
+---
+title: Popover
+description: "`Popover`は、特定の要素に関連する情報やアクションを表示する小さな浮かぶウィンドウで、ボタンやリンクに対してトリガーされ、ユーザーがクリックまたはホバーしたときに表示されるコンポーネントです。"
+package-name: "@yamada-ui/popover"
+order: 3
+with_description: true
+tab: アクセシビリティ
+---
+
+`Popover`は、アクセシビリティに関して[WAI-ARIA Dialog (Modal) Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)に従います。
+
+## キーボード操作
+
+`Popover`が開くと、フォーカスは`Popover`内にロックされます。つまり、`Popover`を閉じない限り、`Popover`外の要素をフォーカスすることはできません。
+
+| キー            | 説明                                                                                                              | 状態                                  |
+| --------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| `Tab`           | `Popover`内の無効ではない次の要素にフォーカスします。最後の要素の場合は最初の無効ではない要素をフォーカスします。 | `isOpen={true}`                       |
+| `Shift` + `Tab` | `Popover`内の前の無効ではない要素をフォーカスします。最初の要素の場合は最後の無効ではない要素をフォーカスします。 | `isOpen={true}`                       |
+| `Escape`        | `Popover`を閉じます。                                                                                             | `isOpen={true}` + `closeOnEsc={true}` |
+
+## ARIAロールと属性
+
+| コンポーネント       | ロールと属性                 | 使い方                                                                                           |
+| :------------------- | :--------------------------- | :----------------------------------------------------------------------------------------------- |
+| `Popover`            | `role="dialog"`              | ダイアログであることを示します。                                                                 |
+|                      | `aria-labelledby`            | 関連した`PopoverHeader`の`id`を設定します。                                                      |
+|                      | `aria-describedby`           | 関連した`PopoverBody`の`id`を設定します。                                                        |
+|                      | `aria-hidden="true"`         | 要素をアクセシビリティツリーから除外します。                                                     |
+|                      | `aria-expanded`              | `Popover`が展開されている場合は`"true"`を設定し、折りたたまれている場合は`"false"`を設定します。 |
+|                      | `aria-controls`              | `Popover`が展開されている場合は`id`を設定し、折りたたまれている場合は`undefined`を設定します。   |
+| `PopoverCloseButton` | `aria-label="Close popover"` | `"Close popover"`を設定します。                                                                  |
+|                      | `aria-controls`              | `Popover`の`id`を設定します。                                                                    |
+| `PopoverHeader`      | `id`                         | `Popover`と関連付けるために使用する`id`。                                                        |
+| `PopoverBody`        | `id`                         | `Popover`と関連付けるために使用する`id`。                                                        |
