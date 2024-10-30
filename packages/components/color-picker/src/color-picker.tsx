@@ -11,7 +11,6 @@ import {
   useComponentMultiStyle,
 } from "@yamada-ui/core"
 import { Popover, PopoverContent, PopoverTrigger } from "@yamada-ui/popover"
-import { usePopover } from "@yamada-ui/popover/src/popover"
 import { Portal } from "@yamada-ui/portal"
 import {
   cx,
@@ -20,7 +19,7 @@ import {
   mergeRefs,
   runIfFunc,
 } from "@yamada-ui/utils"
-import { cloneElement } from "react"
+import { cloneElement, useId } from "react"
 import { ColorSelector } from "./color-selector"
 import { EyeDropperIcon } from "./color-selector-eye-dropper"
 import { ColorSwatch } from "./color-swatch"
@@ -108,6 +107,9 @@ export const ColorPicker = forwardRef<ColorPickerProps, "input">(
       withSwatch,
       ...props,
     })
+
+    const id = useId()
+
     let {
       className,
       alphaSliderRef,
@@ -178,6 +180,8 @@ export const ColorPicker = forwardRef<ColorPickerProps, "input">(
                 h={h}
                 minH={minH}
                 {...getFieldProps(fieldProps, ref)}
+                aria-controls={id}
+                role="combobox"
                 inputProps={getInputProps(inputProps)}
               />
 
@@ -191,6 +195,9 @@ export const ColorPicker = forwardRef<ColorPickerProps, "input">(
             <Portal {...portalProps}>
               <PopoverContent
                 className="ui-color-picker__content"
+                containerProps={{
+                  id,
+                }}
                 __css={{ ...styles.content }}
               >
                 <ColorSelector
@@ -231,7 +238,6 @@ const ColorPickerField = forwardRef<ColorPickerFieldProps, "input">(
   ({ className, h, minH, inputProps, ...rest }, ref) => {
     const { styles } = useColorPickerContext()
     const { ref: inputRef, ...computedInputProps } = inputProps ?? {}
-    const { id: popoverId } = usePopover()
 
     const css: CSSUIObject = {
       alignItems: "center",
@@ -253,9 +259,7 @@ const ColorPickerField = forwardRef<ColorPickerFieldProps, "input">(
           <ui.input
             ref={mergeRefs(ref, inputRef)}
             className="ui-color-picker-picker__field__input"
-            aria-controls={popoverId}
             display="inline-block"
-            role="textbox"
             w="100%"
             {...computedInputProps}
           />
