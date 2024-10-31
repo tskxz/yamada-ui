@@ -1,5 +1,12 @@
 # @yamada-ui/autocomplete
 
+## 1.6.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @yamada-ui/popover@1.4.1
+
 ## 1.6.2
 
 ### Patch Changes

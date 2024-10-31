@@ -1,5 +1,12 @@
 # @yamada-ui/menu
 
+## 1.3.18
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @yamada-ui/popover@1.4.1
+
 ## 1.3.17
 
 ### Patch Changes

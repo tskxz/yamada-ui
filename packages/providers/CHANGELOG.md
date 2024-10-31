@@ -1,5 +1,12 @@
 # @yamada-ui/providers
 
+## 1.2.12
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @yamada-ui/notice@1.1.8
+
 ## 1.2.11
 
 ### Patch Changes
