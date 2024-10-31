@@ -1,3 +1,4 @@
+import { For } from "./for"
 import { Accordion } from "./accordion"
 import { Airy } from "./airy"
 import { Alert } from "./alert"
@@ -98,6 +99,7 @@ import { Tooltip } from "./tooltip"
 import { YearPicker } from "./year-picker"
 
 export const components = {
+  For,
   Accordion,
   Airy,
   Alert,
