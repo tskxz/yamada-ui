@@ -19,7 +19,7 @@ import {
   mergeRefs,
   runIfFunc,
 } from "@yamada-ui/utils"
-import { cloneElement, useId } from "react"
+import { cloneElement } from "react"
 import { ColorSelector } from "./color-selector"
 import { EyeDropperIcon } from "./color-selector-eye-dropper"
 import { ColorSwatch } from "./color-swatch"
@@ -107,9 +107,6 @@ export const ColorPicker = forwardRef<ColorPickerProps, "input">(
       withSwatch,
       ...props,
     })
-
-    const id = useId()
-
     let {
       className,
       alphaSliderRef,
@@ -137,6 +134,7 @@ export const ColorPicker = forwardRef<ColorPickerProps, "input">(
       ...computedProps
     } = omitThemeProps(mergedProps, ["withSwatch"])
     const {
+      id,
       eyeDropperSupported,
       value,
       getContainerProps,

@@ -37,7 +37,7 @@ import {
   splitObject,
   useUpdateEffect,
 } from "@yamada-ui/utils"
-import { useCallback, useRef, useState } from "react"
+import { useCallback, useId, useRef, useState } from "react"
 
 const defaultFormatInput = (value: string) => value
 
@@ -542,7 +542,10 @@ export const useColorPicker = (props: UseColorPickerProps) => {
     ],
   )
 
+  const id = useId()
+
   return {
+    id,
     allowInput,
     eyeDropperSupported,
     value,
